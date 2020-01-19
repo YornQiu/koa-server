@@ -7,7 +7,7 @@ module.exports = {
     if (!article_id) {
       throw new InvalidQueryError()
     }
-    const result = CommentService.findMany({ article_id })
+    const result = await CommentService.findMany({ article_id })
     if (!result) {
       ctx.error = '获取评论失败'
     } else {
