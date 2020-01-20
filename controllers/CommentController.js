@@ -16,11 +16,11 @@ module.exports = {
     return next()
   },
   'POST /api/delComment': async (ctx, next) => {
-    const { id } = ctx.request.body
-    if (!id) {
+    const { _id } = ctx.request.body
+    if (!_id) {
       throw new InvalidQueryError()
     }
-    const result = await CommentService.deleteById(id)
+    const result = await CommentService.deleteById(_id)
     if (!result) {
       ctx.error = '评论不存在'
     } else {
@@ -43,12 +43,12 @@ module.exports = {
     return next()
   },
   'POST /api/modifyComment': async (ctx, next) => {
-    const { data } = ctx.request.body
-    if (!data || !data.id) {
+    const data = ctx.request.body
+    if (!data || !data._id) {
       throw new InvalidQueryError()
     }
     data.modify_time = new Date().getTime()
-    const result = await CommentService.updateById(data.id, { data })
+    const result = await CommentService.updateById(data._id, data )
     if (!result) {
       ctx.error = '保存更改失败'
     } else {
