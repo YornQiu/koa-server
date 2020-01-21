@@ -12,7 +12,7 @@ console.log(`process models ...`)
 
 files.forEach((file) => {
 	const modelFile = require(path.join(__dirname, file));
-	const schema = new mongoose.Schema(modelFile.schema);
+	const schema = new mongoose.Schema(modelFile.schema, modelFile.options || {});
 
 	Models[modelFile.name] = mongo.model(modelFile.name, schema);
 });

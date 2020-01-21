@@ -1,7 +1,6 @@
 module.exports = {
   name: "article",
   schema: {
-    id: String, // ID
     title: {
       type: String,
       required: true
@@ -16,9 +15,19 @@ module.exports = {
       required: true
     }, // 内容
     abstract: String, // 摘要
-    category: String, //分类
-    state: Number, //0:草稿, 1:已发布, 2:已撤销
-    create_time: String, // 创建时间
-    modify_time: String, // 修改时间
+    category: String, // 分类
+    state: Number, // 0:草稿, 1:已发布, 2:已撤销
+    create_time: {
+      type: Date,
+      default: Date.now
+    }, // 创建时间
+    update_time: {
+      type: Date,
+      default: Date.now
+    }, // 修改时间
+  },
+  options: {
+    versionKey: false,
+    timestamps: { createdAt: 'create_time', updatedAt: 'update_time' }
   }
 };
