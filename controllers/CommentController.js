@@ -33,7 +33,6 @@ module.exports = {
     if (!data) {
       throw new InvalidQueryError()
     }
-    data.create_time = new Date().getTime()
     const result = await CommentService.save(data)
     if (!result) {
       ctx.error = '发布失败'
@@ -47,8 +46,7 @@ module.exports = {
     if (!data || !data._id) {
       throw new InvalidQueryError()
     }
-    data.modify_time = new Date().getTime()
-    const result = await CommentService.updateById(data._id, data )
+    const result = await CommentService.updateById(data._id, data)
     if (!result) {
       ctx.error = '保存更改失败'
     } else {

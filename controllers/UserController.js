@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-const config = require('../config')
+const tokenConfig = require('../config').tokenConfig
 const UserService = require('../services').UserService
 const { InvalidQueryError } = require('../lib/error')
 
@@ -25,7 +25,7 @@ module.exports = {
         token: jwt.sign({
           data: user._id,
           exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24 * 3), //设置 token 过期时间: 3d
-        }, config.secret)
+        }, tokenConfig.secret)
       }
     }
 
@@ -49,7 +49,7 @@ module.exports = {
         token: jwt.sign({
           data: user._id,
           exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24 * 3), //设置 token 过期时间: 3d
-        }, config.secret)
+        }, tokenConfig.secret)
       }
     }
 
