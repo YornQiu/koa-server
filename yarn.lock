@@ -827,7 +827,7 @@ mongoose-legacy-pluralize@1.0.2:
   resolved "https://registry.npm.taobao.org/mongoose-legacy-pluralize/download/mongoose-legacy-pluralize-1.0.2.tgz#3ba9f91fa507b5186d399fb40854bff18fb563e4"
   integrity sha1-O6n5H6UHtRhtOZ+0CFS/8Y+1Y+Q=
 
-mongoose@^5.5.5:
+mongoose@^5.10.2:
   version "5.10.2"
   resolved "https://registry.npm.taobao.org/mongoose/download/mongoose-5.10.2.tgz#3a6770affa8c05c4198515616fd555a5c9bc74d6"
   integrity sha1-Omdwr/qMBcQZhRVhb9VVpcm8dNY=
