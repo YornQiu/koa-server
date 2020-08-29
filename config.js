@@ -15,5 +15,6 @@ module.exports = {
     user: 'root',
     pwd: 'root',
     db: 'test',
+    authSource: 'admin',
   }
 }
