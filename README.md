@@ -48,7 +48,7 @@ npm v3.x+
 |      ├─logger.js              // 日志打印中间件
 |      └response.js             // 响应及异常处理中间件
 ├─logs                      // 日志目录
-├─lib                       // 依赖库
+├─libs                       // 依赖库
 |  ├─error.js                   // 异常处理
 |  ├─baseDAO.js                 // 基础业务类
 |  └mongoDB.js                  // mongoDB配置

@@ -1,5 +1,5 @@
 const ArticleService = require('../services').ArticleService
-const { InvalidQueryError } = require('../lib/error')
+const { InvalidQueryError } = require('@libs/error')
 
 module.exports = {
   'POST /api/getArticleList': async (ctx, next) => {

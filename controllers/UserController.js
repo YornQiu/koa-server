@@ -1,6 +1,6 @@
 const { sign } = require('../middlewares/jwt')
 const UserService = require('../services').UserService
-const { InvalidQueryError } = require('../lib/error')
+const { InvalidQueryError } = require('@libs/error')
 
 module.exports = {
   'POST /api/login': async (ctx, next) => {

@@ -1,5 +1,5 @@
 const CommentService = require('../services').CommentService
-const { InvalidQueryError } = require('../lib/error')
+const { InvalidQueryError } = require('@libs/error')
 
 module.exports = {
   'POST /api/getComment': async (ctx, next) => {

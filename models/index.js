@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const mongoose = require('mongoose');
 const { logger } = require('../middlewares/logger')
-const mongo = require('../lib/mongoDB');
+const mongo = require('@libs/mongoDB');
 
 const files = fs.readdirSync(__dirname).filter(file => file.endsWith('.js') && file !== 'index.js')
 const Models = {}

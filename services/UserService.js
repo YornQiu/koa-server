@@ -1,4 +1,4 @@
-const BaseDAO = require('../lib/baseDAO')
+const BaseDAO = require('@libs/baseDAO')
 const User = require('../models').user
 
 class UserService extends BaseDAO {

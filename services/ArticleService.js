@@ -1,5 +1,5 @@
-const BaseDAO = require('../lib/baseDAO')
-const Article = require('../models').article
+const BaseDAO = require('@libs/baseDAO')
+const Article = require('@models').article
 
 class ArticleService extends BaseDAO {
   constructor(model) {
