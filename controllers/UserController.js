@@ -1,5 +1,4 @@
-const jwt = require('jsonwebtoken')
-const tokenConfig = require('../config').tokenConfig
+const { sign } = require('../middlewares/jwt')
 const UserService = require('../services').UserService
 const { InvalidQueryError } = require('../lib/error')
 
@@ -17,15 +16,10 @@ module.exports = {
       ctx.error = '密码错误'
     } else {
       ctx.result = {
-        userInfo: {
-          id: user._id,
-          username: user.username,
-          nickname: user.nickname,
-        },
-        token: jwt.sign({
-          data: user._id,
-          exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24 * 3), //设置 token 过期时间: 3d
-        }, tokenConfig.secret)
+        id: user._id,
+        username: user.username,
+        nickname: user.nickname,
+        token: sign(user._id)
       }
     }
 
@@ -41,15 +35,10 @@ module.exports = {
     } else {
       const user = UserService.save({ username, password })
       ctx.result = {
-        userInfo: {
-          id: user._id,
-          username: user.username,
-          nickname: user.nickname,
-        },
-        token: jwt.sign({
-          data: user._id,
-          exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24 * 3), //设置 token 过期时间: 3d
-        }, tokenConfig.secret)
+        id: user._id,
+        username: user.username,
+        nickname: user.nickname,
+        token: sign(user._id)
       }
     }
 
