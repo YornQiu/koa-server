@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const { logger } = require('../middlewares/logger')
-const config = require('../config').mongoDB;
+const DBConfig = config.mongoDB;
 
-const url = `mongodb://${config.user}:${config.pwd}@${config.host}:${config.port}/${config.db}?authSource=${config.authSource}`;
+const url = `mongodb://${DBConfig.user}:${DBConfig.pwd}@${DBConfig.host}:${DBConfig.port}/${DBConfig.db}?authSource=${DBConfig.authSource}`;
 const mongo = mongoose.createConnection(url, { useNewUrlParser: true, useUnifiedTopology: true }); //创建一个数据库连接
 
 

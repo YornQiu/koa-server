@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 require('module-alias/register')
 
-const http = require('http')
-const app = require('@/app')
-
 global.config = require('@/config')
 global.logger = require('@middlewares/logger').logger
+
+const http = require('http')
+const app = require('@/app')
 
 /**
  * Normalize a port into a number, string, or false.

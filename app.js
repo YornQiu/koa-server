@@ -5,7 +5,6 @@ const views = require('koa-views')
 const cors = require('koa2-cors')
 const helmet = require("koa-helmet")
 
-const config = require('@/config')
 const publicRouter = require('@/routers/public')
 const privateRouter = require('@/routers/private')
 const viewRouter = require('@/routers/view')

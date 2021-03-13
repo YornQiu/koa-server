@@ -1,4 +1,4 @@
-const { tokenConfig } = require('../config')
+const { tokenConfig } = config
 const jwt = require('jsonwebtoken')
 
 const sign = (data) => {
