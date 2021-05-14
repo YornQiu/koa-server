@@ -1,5 +1,6 @@
-const { sign } = require('../middlewares/jwt')
-const UserService = require('../services').UserService
+const { sign } = require('@middlewares/jwt')
+const utils = require('@utils')
+const UserService = require('@services').UserService
 const { InvalidQueryError } = require('@libs/error')
 
 module.exports = {
@@ -12,7 +13,7 @@ module.exports = {
     if (!user) {
       ctx.error = '用户不存在'
       ctx.code = 0
-    } else if (user.password !== password) {
+    } else if (user.password !== utils.encrypt(password)) {
       ctx.error = '密码错误'
     } else {
       ctx.result = {
@@ -33,7 +34,7 @@ module.exports = {
     if (await UserService.findOne({ username })) {
       ctx.error = '用户已存在'
     } else {
-      const user = UserService.save({ username, password })
+      const user = await UserService.save({ username, password: utils.encrypt(password) })
       ctx.result = {
         id: user._id,
         username: user.username,
