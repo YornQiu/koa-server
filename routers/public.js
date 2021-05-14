@@ -1,7 +1,7 @@
 const router = require('koa-router')()
 const { methods } = router
-const controllers = require('../controllers')
-const { logger } = require('../middlewares/logger')
+const controllers = require('@controllers')
+const { logger } = require('@middlewares/logger')
 
 /**
  * 公开接口，可直接访问

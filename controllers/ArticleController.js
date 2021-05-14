@@ -1,4 +1,4 @@
-const ArticleService = require('../services').ArticleService
+const ArticleService = require('@services').ArticleService
 const { InvalidQueryError } = require('@libs/error')
 
 module.exports = {

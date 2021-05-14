@@ -232,12 +232,12 @@ denque@^1.4.1:
   resolved "https://registry.npm.taobao.org/denque/download/denque-1.4.1.tgz#6744ff7641c148c3f8a69c307e51235c1f4a37cf"
   integrity sha1-Z0T/dkHBSMP4ppwwflEjXB9KN88=
 
-depd@2.0.0, depd@~2.0.0:
+depd@2.0.0, depd@^2.0.0, depd@~2.0.0:
   version "2.0.0"
   resolved "https://registry.npm.taobao.org/depd/download/depd-2.0.0.tgz#b696163cc757560d09cf22cc8fad1571b79e76df"
   integrity sha1-tpYWPMdXVg0JzyLMj60Vcbeedt8=
 
-depd@^1.1.2, depd@~1.1.2:
+depd@~1.1.2:
   version "1.1.2"
   resolved "https://registry.npm.taobao.org/depd/download/depd-1.1.2.tgz#9bcd52e14c097763e749b274c4346ed2e560b5a9"
   integrity sha1-m81S4UwJd2PnSbJ0xDRu0uVgtak=
@@ -655,10 +655,10 @@ koa2-cors@^2.0.6:
   resolved "https://registry.npm.taobao.org/koa2-cors/download/koa2-cors-2.0.6.tgz#9ad23df3a0b9bb84530b46f5944f3fb576086554"
   integrity sha1-mtI986C5u4RTC0b1lE8/tXYIZVQ=
 
-koa@^2.8.1:
-  version "2.13.0"
-  resolved "https://registry.npm.taobao.org/koa/download/koa-2.13.0.tgz?cache=0&sync_timestamp=1592754966586&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fkoa%2Fdownload%2Fkoa-2.13.0.tgz#25217e05efd3358a7e5ddec00f0a380c9b71b501"
-  integrity sha1-JSF+Be/TNYp+Xd7ADwo4DJtxtQE=
+koa@^2.13.1:
+  version "2.13.1"
+  resolved "https://registry.npm.taobao.org/koa/download/koa-2.13.1.tgz?cache=0&sync_timestamp=1609771379723&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fkoa%2Fdownload%2Fkoa-2.13.1.tgz#6275172875b27bcfe1d454356a5b6b9f5a9b1051"
+  integrity sha1-YnUXKHWye8/h1FQ1altrn1qbEFE=
   dependencies:
     accepts "^1.3.5"
     cache-content-type "^1.0.0"
@@ -667,7 +667,7 @@ koa@^2.8.1:
     cookies "~0.8.0"
     debug "~3.1.0"
     delegates "^1.0.0"
-    depd "^1.1.2"
+    depd "^2.0.0"
     destroy "^1.0.4"
     encodeurl "^1.0.2"
     escape-html "^1.0.3"

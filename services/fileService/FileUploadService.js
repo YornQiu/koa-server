@@ -1,6 +1,6 @@
 const fs = require('fs')
 const path = require('path')
-const utils = require('@utils/index')
+const utils = require('@utils')
 
 class FileUploadService {
   /**

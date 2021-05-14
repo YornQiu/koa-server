@@ -1,4 +1,4 @@
-const { logger } = require('./logger')
+const { logger } = require('@middlewares/logger')
 
 // 这个middleware用于将ctx.result中的内容最终回传给客户端
 // 回传遵循这样的格式：{ code: 0, msg: string, data: any }

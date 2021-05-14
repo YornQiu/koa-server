@@ -1,4 +1,4 @@
-const CommentService = require('../services').CommentService
+const CommentService = require('@services').CommentService
 const { InvalidQueryError } = require('@libs/error')
 
 module.exports = {

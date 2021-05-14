@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { logger } = require('../middlewares/logger')
+const { logger } = require('@middlewares/logger')
 const DBConfig = config.mongoDB;
 
 const url = `mongodb://${DBConfig.user}:${DBConfig.pwd}@${DBConfig.host}:${DBConfig.port}/${DBConfig.db}?authSource=${DBConfig.authSource}`;

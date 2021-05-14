@@ -1,7 +1,7 @@
 {
   "name": "koa-server",
   "version": "0.1.0",
-  "author": "QY",
+  "author": "YogurtQ",
   "private": true,
   "scripts": {
     "serve": "node ./bin/www",
@@ -15,7 +15,7 @@
     "crypto-js": "^3.1.9-1",
     "formidable": "^1.2.1",
     "jsonwebtoken": "^8.5.1",
-    "koa": "^2.8.1",
+    "koa": "^2.13.1",
     "koa-body": "^4.1.1",
     "koa-helmet": "^4.1.0",
     "koa-router": "^7.4.0",

@@ -2,6 +2,8 @@ const fs = require('fs')
 const path = require('path')
 const CryptoJS = require('crypto-js')
 
+const SECRET = 'KOA_SERVER_2020';
+
 module.exports = {
   /**
    * 递归创建多级目录
@@ -17,6 +19,11 @@ module.exports = {
       }
     }
   },
+
+  /**
+   * 生成uuid
+   * @returns {String} uuid
+   */
   uuid() {
     var s = [];
     var hexDigits = '0123456789abcdef';
@@ -30,6 +37,7 @@ module.exports = {
     var uuid = s.join('');
     return uuid;
   },
+
   /**
    * 将日期格式化为特定格式的字符串
    * 月(M)、日(d)、小时(h)、分(m)、秒(s)、季度(q) 可以用 1-2 个占位符，年(y)可以用 1-4 个占位符，毫秒(S)只能用 1 个占位符(是 1-3 位的数字)
@@ -37,6 +45,7 @@ module.exports = {
    * DateFormat(Date, 'yyyy-M-d h:m:s.S')      ==> 2006-7-2 8:9:4.18
    * @param {Date} date 日期
    * @param {String} fmt 字符串格式
+   * @returns {String} 格式化的日期
    */
   dateFormat(date, fmt) {
     var o = {
@@ -53,28 +62,28 @@ module.exports = {
       if (new RegExp('(' + k + ')').test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (('00' + o[k]).substr(('' + o[k]).length)));
     return fmt;
   },
+
   /**
    * 解密
-   * @param {String} data 数据
-   * @param {String} alg 加密算法,支持aes,默认aes
+   * @param {String} data 数据，算法为AES
+   * @returns {String} 解密后的数据
    */
-  decrypt(data, alg = 'aes') {
-    if (data) {
-      return CryptoJS[alg.toUpperCase()].decrypt(data)
-    }
-    return ''
+  decrypt(data) {
+    return data && CryptoJS.AES.decrypt(data, SECRET).toString(CryptoJS.enc.Utf8) || ''
   },
+
   /**
    * 加密
    * @param {String} data 数据
-   * @param {String} alg 加密算法,支持md5，aes
+   * @param {String} alg 加密算法,支持MD5，AES
+   * @returns {String} 加密后的数据
    */
-  encrypt(data, alg = 'md5') {
+  encrypt(data, alg) {
     if (data) {
-      if (alg === 'md5') {
+      if (alg === 'MD5') {
         return CryptoJS.MD5(data).toString()
       } else {
-        return CryptoJS[alg.toUpperCase()].encrypt(data, 'encrypt').ciphertext.toString()
+        return CryptoJS.AES.encrypt(data, SECRET).toString()
       }
     }
     return ''

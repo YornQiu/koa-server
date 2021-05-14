@@ -1,7 +1,7 @@
 const router = require('koa-router')()
-const controllers = require('../controllers/AdminControllers')
-const { logger } = require('../middlewares/logger')
-const { verify } = require('../middlewares/jwt')
+const controllers = require('@controllers/AdminControllers')
+const { logger } = require('@middlewares/logger')
+const { verify } = require('@middlewares/jwt')
 
 router.use(verify)
 

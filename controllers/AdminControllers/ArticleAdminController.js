@@ -1,5 +1,5 @@
-const ArticleService = require('../../services').ArticleService
-const ImgUploadService = require('../../services/fileService/ImgUploadService')
+const ArticleService = require('@services').ArticleService
+const ImgUploadService = require('@services/fileService/ImgUploadService')
 const { InvalidQueryError } = require('@libs/error')
 
 module.exports = {
