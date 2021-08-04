@@ -13,7 +13,7 @@ const responseHandler = (ctx) => {
   } else if (ctx.error !== undefined) { //处理失败
     ctx.type = 'json'
     ctx.body = {
-      code: ctx.code || -1,
+      code: ctx.code || 0,
       msg: ctx.error,
       data: null
     }
@@ -33,7 +33,7 @@ const errorHandler = (ctx, next) => {
       }
       ctx.status = 200 // 保证返回状态是 200, 这样前端不会抛出异常
       ctx.body = {
-        code: err.code || -1,
+        code: err.code || 0,
         data: null,
         msg: err.message.trim()
       }

@@ -2,13 +2,13 @@ const fs = require('fs')
 const path = require('path')
 const utils = require('@utils')
 
+/**
+ * 初始化参数设置
+ * @param {String} uploadPath 文件保存路径
+ * @param {Boolean} rename 是否重命名同名文件，默认为true， 为false时会覆盖同名文件
+ * @param {Array} types 允许的文件类型
+ */
 class FileUploadService {
-  /**
-   * 初始化参数设置
-   * @param {String} uploadPath 文件保存路径
-   * @param {Boolean} rename 是否重命名同名文件，默认为true， 为false时会覆盖同名文件
-   * @param {Array} types 允许的文件类型
-   */
   constructor(uploadPath, rename, types) {
     this.uploadPath = uploadPath || '/data'
     this.uploadDir = path.join(config.publicDir, this.uploadPath)
@@ -94,7 +94,7 @@ class FileUploadService {
       ctx.result = filePaths
     } catch (error) {
       console.log(error)
-      ctx.error = '服务器错误'
+      ctx.error = '文件保存失败'
     }
   }
 }
