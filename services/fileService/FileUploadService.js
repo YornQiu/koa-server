@@ -69,7 +69,7 @@ class FileUploadService {
     })
 
     return {
-      code: 200,
+      status: true,
       fileName,
       filePath: `${this.uploadPath}/${fileName}`
     }
@@ -85,7 +85,7 @@ class FileUploadService {
     try {
       for (const key in files) {
         const file = files[key]
-        if (Object.prototype.toString.call(file) === '[Object Array]') {
+        if (Object.prototype.toString.call(file) === '[object Array]') {
           file.forEach(item => filePaths.push(this.writeFile(item)))
         } else {
           filePaths.push(this.writeFile(file))
