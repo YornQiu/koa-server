@@ -79,13 +79,15 @@ module.exports = {
    * @returns {String} 加密后的数据
    */
   encrypt(data, alg) {
-    if (data) {
-      if (alg === 'MD5') {
-        return CryptoJS.MD5(data).toString()
-      } else {
-        return CryptoJS.AES.encrypt(data, SECRET).toString()
-      }
-    }
-    return ''
+    return data && CryptoJS.AES.encrypt(data, SECRET).toString() || ''
+  },
+  
+  /**
+   * md5编码
+   * @param {String} data 数据
+   * @returns {String} 编码后的数据
+   */
+  md5(data) {
+    return data && CryptoJS.MD5(data).toString() || ''
   }
 }

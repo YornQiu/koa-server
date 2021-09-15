@@ -12,15 +12,18 @@ module.exports = {
     const user = await UserService.findOne({ username })
     if (!user) {
       ctx.error = '用户不存在'
-      ctx.code = 0
-    } else if (user.password !== utils.encrypt(password)) {
-      ctx.error = '密码错误'
+      ctx.code = -1
     } else {
-      ctx.result = {
-        id: user._id,
-        username: user.username,
-        nickname: user.nickname,
-        token: sign(user._id)
+      const pwd = config.encrypt ? utils.decrypt(password) : password
+      if (user.password !== utils.md5(pwd)) {
+        ctx.error = '密码错误'
+      } else {
+        ctx.result = {
+          id: user._id,
+          username: user.username,
+          nickname: user.nickname,
+          token: sign(user._id)
+        }
       }
     }
 
@@ -34,7 +37,7 @@ module.exports = {
     if (await UserService.findOne({ username })) {
       ctx.error = '用户已存在'
     } else {
-      const user = await UserService.save({ username, password: utils.encrypt(password) })
+      const user = await UserService.save({ username, password: utils.md5(password) })
       ctx.result = {
         id: user._id,
         username: user.username,
