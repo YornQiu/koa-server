@@ -2,7 +2,7 @@ const ArticleService = require('@services').ArticleService
 const { InvalidQueryError } = require('@libs/error')
 
 module.exports = {
-  'POST /api/getArticleList': async (ctx, next) => {
+  'GET /api/article/list': async (ctx, next) => {
     const { pageNum, pageSize } = ctx.request.body
     const result = await ArticleService.findByPage({ state: 1 }, pageNum, pageSize)
     if (!result) {
@@ -12,12 +12,12 @@ module.exports = {
     }
     return next()
   },
-  'POST /api/getArticle': async (ctx, next) => {
-    const { _id } = ctx.request.body
-    if (!_id) {
+  'GET /api/article/:id': async (ctx, next) => {
+    const { id } = ctx.request.params
+    if (!id) {
       throw new InvalidQueryError()
     }
-    const result = await ArticleService.findById(_id)
+    const result = await ArticleService.findById(id)
     if (!result) {
       ctx.error = '文章不存在'
     } else {

@@ -2,8 +2,8 @@ const CommentService = require('@services').CommentService
 const { InvalidQueryError } = require('@libs/error')
 
 module.exports = {
-  'POST /api/getComment': async (ctx, next) => {
-    const { article_id } = ctx.request.body
+  'GET /api/comment/list': async (ctx, next) => {
+    const { article_id } = ctx.query
     if (!article_id) {
       throw new InvalidQueryError()
     }
@@ -15,12 +15,12 @@ module.exports = {
     }
     return next()
   },
-  'POST /api/delComment': async (ctx, next) => {
-    const { _id } = ctx.request.body
-    if (!_id) {
+  'DELETE /api/comment/:id': async (ctx, next) => {
+    const { id } = ctx.params
+    if (!id) {
       throw new InvalidQueryError()
     }
-    const result = await CommentService.deleteById(_id)
+    const result = await CommentService.deleteById(id)
     if (!result) {
       ctx.error = '评论不存在'
     } else {
@@ -28,7 +28,7 @@ module.exports = {
     }
     return next()
   },
-  'POST /api/postComment': async (ctx, next) => {
+  'POST /api/comment': async (ctx, next) => {
     const data = ctx.request.body
     if (!data) {
       throw new InvalidQueryError()
@@ -41,12 +41,13 @@ module.exports = {
     }
     return next()
   },
-  'POST /api/modifyComment': async (ctx, next) => {
+  'PUT /api/comment/:id': async (ctx, next) => {
+    const { id } = ctx.params
     const data = ctx.request.body
-    if (!data || !data._id) {
+    if (!data || !id) {
       throw new InvalidQueryError()
     }
-    const result = await CommentService.updateById(data._id, data)
+    const result = await CommentService.updateById(id, data)
     if (!result) {
       ctx.error = '保存更改失败'
     } else {

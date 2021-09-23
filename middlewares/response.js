@@ -6,6 +6,7 @@ const responseHandler = (ctx) => {
   if (ctx.result !== undefined) { //处理成功
     ctx.type = 'json'
     ctx.body = {
+      status: true,
       code: ctx.code || 200,
       msg: ctx.msg || 'success',
       data: ctx.result
@@ -13,6 +14,7 @@ const responseHandler = (ctx) => {
   } else if (ctx.error !== undefined) { //处理失败
     ctx.type = 'json'
     ctx.body = {
+      status: false,
       code: ctx.code || 0,
       msg: ctx.error,
       data: null
@@ -33,9 +35,10 @@ const errorHandler = (ctx, next) => {
       }
       ctx.status = 200 // 保证返回状态是 200, 这样前端不会抛出异常
       ctx.body = {
+        status: false,
         code: err.code || 0,
-        data: null,
-        msg: err.message.trim()
+        msg: err.message.trim(),
+        data: null
       }
     }
     return Promise.resolve()

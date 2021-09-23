@@ -2,9 +2,10 @@ const { sign } = require('@middlewares/jwt')
 const utils = require('@utils')
 const UserService = require('@services').UserService
 const { InvalidQueryError } = require('@libs/error')
+const { verify } = require('@middlewares/jwt')
 
 module.exports = {
-  'POST /api/login': async (ctx, next) => {
+  'POST /api/user/login': async (ctx, next) => {
     const { username, password } = ctx.request.body
     if (!username || !password) {
       throw new InvalidQueryError()
@@ -19,17 +20,17 @@ module.exports = {
         ctx.error = '密码错误'
       } else {
         ctx.result = {
-          id: user._id,
+          id: user.id,
           username: user.username,
           nickname: user.nickname,
-          token: sign(user._id)
+          token: sign(user.id)
         }
       }
     }
 
     return next()
   },
-  'POST /api/register': async (ctx, next) => {
+  'POST /api/user/register': async (ctx, next) => {
     const { username, password } = ctx.request.body
     if (!username || !password) {
       throw new InvalidQueryError()
@@ -39,13 +40,25 @@ module.exports = {
     } else {
       const user = await UserService.save({ username, password: utils.md5(password) })
       ctx.result = {
-        id: user._id,
+        id: user.id,
         username: user.username,
         nickname: user.nickname,
-        token: sign(user._id)
+        token: sign(user.id)
       }
     }
 
+    return next()
+  },
+  'GET /api/user/me': async (ctx, next) => {
+    verify(ctx)
+    const { id } = ctx.jwtData.data
+    const user = await UserService.findById(id)
+    ctx.result = {
+      id: user.id,
+      username: user.username,
+      nickname: user.nickname,
+    }
+    
     return next()
   }
 }
