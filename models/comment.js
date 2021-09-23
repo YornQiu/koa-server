@@ -26,7 +26,6 @@ module.exports = {
     }, // 修改时间
   },
   options: {
-    versionKey: false,
     timestamps: { createdAt: 'create_time', updatedAt: 'update_time' }
   }
 };

@@ -24,7 +24,13 @@ module.exports = {
     }, // 修改时间
   },
   options: {
-    versionKey: false,
-    timestamps: { createdAt: 'create_time', updatedAt: 'update_time' }
+    timestamps: { createdAt: 'create_time', updatedAt: 'update_time' },
+    toObject: { 
+      transform(doc, ret) {
+        ret.id = doc.id
+        delete ret._id
+        return ret
+      }
+    }
   }
 };
