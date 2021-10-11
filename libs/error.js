@@ -8,6 +8,22 @@ class CommonError extends Error {
 module.exports = {
   CommonError,
   /**
+   * 无效的参数构造函数
+   */
+   InvalidQueryError: class InvalidQueryError extends CommonError {
+    constructor(message = '无效的参数') {
+      super(message, 400)
+    }
+  },
+  /**
+   * 身份未认证构造函数
+   */
+   UnauthorizedError: class UnauthorizedError extends CommonError {
+    constructor(message = '身份未认证') {
+      super(message, 401)
+    }
+  },
+  /**
    * 拒绝访问构造函数
    */
   ForbiddenError: class ForbiddenError extends CommonError {
@@ -16,16 +32,8 @@ module.exports = {
     }
   },
   /**
-   * 无效的参数构造函数
+   * 资源未找到构造函数
    */
-  InvalidQueryError: class InvalidQueryError extends CommonError {
-    constructor(message = '无效的参数') {
-      super(message, 400)
-    }
-  },
-/**
- * 资源未找到构造函数
- */
   NotFoundError: class NotFoundError extends CommonError {
     constructor(message = '资源未找到') {
       super(message, 404)

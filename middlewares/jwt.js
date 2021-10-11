@@ -1,3 +1,4 @@
+const { UnauthorizedError } = require('@libs/error')
 const { tokenConfig } = config
 const jwt = require('jsonwebtoken')
 
@@ -14,10 +15,10 @@ const verify = (ctx) => {
       const token = ctx.request.headers.authorization.slice(7)
       ctx.jwtData = jwt.verify(token, tokenConfig.secret)
     } else {
-      throw { code: 401, message: 'no authorization' }
+      throw new UnauthorizedError()
     }
   } catch (err) {
-    throw { code: 401, message: err.message }
+      throw new UnauthorizedError()
   }
 }
 
