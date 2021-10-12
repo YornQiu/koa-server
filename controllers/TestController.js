@@ -3,12 +3,12 @@ const FileDownloadService = require('@services/fileService/FileDownloadService')
 
 module.exports = {
   'GET /': async (ctx, next) => {
-    ctx.result = "Hello World!";
-    return next();
+    ctx.result = "Hello World!"
+    return next()
   },
   'GET /api/index': async (ctx, next) => {
-    ctx.result = "Hello World!";
-    return next();
+    ctx.result = "Hello World!"
+    return next()
   },
   'POST /api/upload': async (ctx, next) => {
     const fileUploadService = new FileUploadService()

@@ -60,8 +60,8 @@ class FileUploadService {
       }
     }
 
-    const reader = fs.createReadStream(file.path);
-    const writer = fs.createWriteStream(filePath);
+    const reader = fs.createReadStream(file.path)
+    const writer = fs.createWriteStream(filePath)
     reader.pipe(writer)
 
     fs.unlink(file.path, (error) => {

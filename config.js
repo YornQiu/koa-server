@@ -7,10 +7,10 @@ module.exports = {
     expired: 60 * 60 * 0.5, //0.5h
     refresh: 60 * 60 * 1 // 1h
   },
-  encrypt: false,
-  publicDir: path.resolve(__dirname, './public'),
-  viewsDir: path.resolve(__dirname, './views'),
-  logPath: path.resolve(__dirname, './logs/koa-server'),
+  encrypt: false, // 是否使用加密算法处理密码，默认不处理
+  publicDir: path.resolve(__dirname, './public'), // 资源文件路径
+  viewsDir: path.resolve(__dirname, './views'), // 静态页面文件路径
+  logPath: path.resolve(__dirname, './logs/koa-server'), // 日志文件路径
   mongoDB: {
     host: '127.0.0.1',
     port: 27017,

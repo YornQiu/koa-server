@@ -29,4 +29,4 @@ module.exports = {
   options: {
     timestamps: { createdAt: 'create_time', updatedAt: 'update_time' }
   }
-};
+}

@@ -1,7 +1,7 @@
 {
   "name": "koa-server",
-  "version": "0.1.0",
-  "author": "YogurtQ",
+  "version": "1.0.0",
+  "author": "Yorn Qiu",
   "private": true,
   "scripts": {
     "serve": "node ./bin/www",
@@ -12,19 +12,19 @@
     "stop": "pm2 stop ecosystem.config.js"
   },
   "dependencies": {
-    "crypto-js": "^3.1.9-1",
-    "formidable": "^1.2.1",
+    "crypto-js": "^4.1.1",
+    "formidable": "^1.2.2",
     "jsonwebtoken": "^8.5.1",
-    "koa": "^2.13.1",
-    "koa-body": "^4.1.1",
-    "koa-helmet": "^4.1.0",
-    "koa-router": "^7.4.0",
+    "koa": "^2.13.3",
+    "koa-body": "4.2.0",
+    "koa-helmet": "^6.1.0",
+    "koa-router": "^10.1.1",
     "koa-static": "^5.0.0",
-    "koa-views": "^6.2.1",
+    "koa-views": "^7.0.1",
     "koa2-cors": "^2.0.6",
-    "log4js": "^5.1.0",
+    "log4js": "^6.3.0",
     "module-alias": "^2.2.2",
-    "mongoose": "^5.10.2"
+    "mongoose": "^6.0.10"
   },
   "_moduleAliases": {
     "@": ".",

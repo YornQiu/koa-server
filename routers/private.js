@@ -14,7 +14,7 @@ for (const url in controllers) {
   if (methods.includes(method)) {
     router[method.toLocaleLowerCase()](path, controllers[url])
   } else {
-    logger.error(`Invalid URL: ${url}`);
+    logger.error(`Invalid URL: ${url}`)
   }
 }
 

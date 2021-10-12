@@ -23,7 +23,7 @@ class FileDownloadService {
         const filename = fileName ? fileName + path.extname(filePath) : path.basename(filePath)
         const fileStream = fs.createReadStream(filePath)
         
-        ctx.set('Content-type', 'application/octet-stream');
+        ctx.set('Content-type', 'application/octet-stream')
         ctx.set('Content-Disposition', 'attachment;filename=' + encodeURIComponent(filename))
         ctx.set('Content-Length', stat.size)
         ctx.body = fileStream
