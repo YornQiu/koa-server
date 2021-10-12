@@ -19,12 +19,7 @@ module.exports = {
       if (user.password !== utils.md5(pwd)) {
         ctx.error = '密码错误'
       } else {
-        ctx.result = {
-          id: user.id,
-          username: user.username,
-          nickname: user.nickname,
-          token: sign(user.id)
-        }
+        ctx.result = sign(user.id)
       }
     }
 
@@ -51,7 +46,7 @@ module.exports = {
   },
   'GET /api/user/me': async (ctx, next) => {
     verify(ctx)
-    const { id } = ctx.jwtData.data
+    const id = ctx.jwtData.data
     const user = await UserService.findById(id)
     ctx.result = {
       id: user.id,
@@ -59,6 +54,13 @@ module.exports = {
       nickname: user.nickname,
     }
     
+    return next()
+  },
+  'GET /api/user/refresh': async (ctx, next) => {
+    verify(ctx)
+    const id = ctx.jwtData.data
+    ctx.result = sign(id)
+
     return next()
   }
 }

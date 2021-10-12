@@ -1,5 +1,5 @@
 class CommonError extends Error {
-  constructor (message = '未知错误', code = -1) {
+  constructor (message = 'unknown error', code = 500) {
     super(message)
     this.code = code
   }
@@ -8,34 +8,34 @@ class CommonError extends Error {
 module.exports = {
   CommonError,
   /**
-   * 无效的参数构造函数
+   * 无效的参数
    */
    InvalidQueryError: class InvalidQueryError extends CommonError {
-    constructor(message = '无效的参数') {
+    constructor(message = 'bad request') {
       super(message, 400)
     }
   },
   /**
-   * 身份未认证构造函数
+   * 身份未认证
    */
    UnauthorizedError: class UnauthorizedError extends CommonError {
-    constructor(message = '身份未认证') {
+    constructor(message = 'unauthorized') {
       super(message, 401)
     }
   },
   /**
-   * 拒绝访问构造函数
+   * 拒绝访问
    */
   ForbiddenError: class ForbiddenError extends CommonError {
-    constructor(message = '拒绝访问') {
+    constructor(message = 'forbidden') {
       super(message, 403)
     }
   },
   /**
-   * 资源未找到构造函数
+   * 资源未找到
    */
   NotFoundError: class NotFoundError extends CommonError {
-    constructor(message = '资源未找到') {
+    constructor(message = 'not found') {
       super(message, 404)
     }
   }

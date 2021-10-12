@@ -3,12 +3,18 @@ const { tokenConfig } = config
 const jwt = require('jsonwebtoken')
 
 const sign = (data) => {
-  return jwt.sign({
-    data,
-    exp: Math.floor(Date.now() / 1000) + tokenConfig.expired
-  }, tokenConfig.secret)
+  return {
+    token_type: 'bearer',
+    access_token: jwt.sign({
+      data,
+      exp: Math.floor(Date.now() / 1000) + tokenConfig.expired
+    }, tokenConfig.secret),
+    refresh_token: jwt.sign({
+      data,
+      exp: Math.floor(Date.now() / 1000) + (tokenConfig.refresh || tokenConfig.expired * 2)
+    }, tokenConfig.secret),
+  }
 }
-
 const verify = (ctx) => {
   try {
     if (typeof ctx.request.headers.authorization === 'string') {

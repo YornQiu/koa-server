@@ -8,7 +8,6 @@ const responseHandler = (ctx) => {
     ctx.body = {
       status: true,
       code: ctx.code || 200,
-      msg: ctx.msg || 'success',
       data: ctx.result
     }
   } else if (ctx.error !== undefined) { //处理失败
@@ -17,7 +16,6 @@ const responseHandler = (ctx) => {
       status: false,
       code: ctx.code || 0,
       msg: ctx.error,
-      data: null
     }
   }
 }
