@@ -1,7 +1,7 @@
 {
   "name": "koa-server",
   "version": "1.0.0",
-  "author": "Yorn Qiu",
+  "author": "YornQiu",
   "private": true,
   "scripts": {
     "serve": "node ./bin/www",
