@@ -4,7 +4,7 @@
   "author": "YornQiu",
   "private": true,
   "scripts": {
-    "serve": "node ./bin/www",
+    "dev": "node ./bin/www",
     "start": "pm2 start ecosystem.config.js --env dev",
     "test": "pm2 start ecosystem.config.js --env test",
     "build": "pm2 start ecosystem.config.js --env pro",
