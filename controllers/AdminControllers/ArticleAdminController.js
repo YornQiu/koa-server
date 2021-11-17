@@ -3,7 +3,7 @@ const ImgUploadService = require('@services/fileService/ImgUploadService')
 const { InvalidQueryError } = require('@libs/error')
 
 module.exports = {
-  'DELETE /api/article/:id': async (ctx, next) => {
+  'DELETE /article/:id': async (ctx, next) => {
     const { id } = ctx.params
     if (!id) {
       throw new InvalidQueryError()
@@ -16,7 +16,7 @@ module.exports = {
     }
     return next()
   },
-  'POST /api/article': async (ctx, next) => {
+  'POST /article': async (ctx, next) => {
     const data = ctx.request.body
     if (!data) {
       throw new InvalidQueryError()
@@ -30,7 +30,7 @@ module.exports = {
     }
     return next()
   },
-  'PUT /api/article/:id': async (ctx, next) => {
+  'PUT /article/:id': async (ctx, next) => {
     const { id } = ctx.params
     const data = ctx.request.body
     if (!data || !id) {
@@ -44,7 +44,7 @@ module.exports = {
     }
     return next()
   },
-  'POST /api/article/img/upload': async (ctx, next) => {
+  'POST /article/img/upload': async (ctx, next) => {
     //按月存放上传的图片
     const date = new Date()
     const year = date.getFullYear()
@@ -55,7 +55,7 @@ module.exports = {
     imgUploadService.execute(ctx)
     return next()
   },
-  'POST /api/draft': async (ctx, next) => {
+  'POST /draft': async (ctx, next) => {
     const data = ctx.request.body
     if (!data) {
       throw new InvalidQueryError()
@@ -74,7 +74,7 @@ module.exports = {
     }
     return next()
   },
-  'GET /api/draft': async (ctx, next) => {
+  'GET /draft': async (ctx, next) => {
     const result = await ArticleService.findOne({ state: 0 })
     if (!result) {
       ctx.error = '无草稿'

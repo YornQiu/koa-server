@@ -5,7 +5,7 @@ const { InvalidQueryError } = require('@libs/error')
 const { verify } = require('@middlewares/jwt')
 
 module.exports = {
-  'POST /api/user/login': async (ctx, next) => {
+  'POST /user/login': async (ctx, next) => {
     const { username, password } = ctx.request.body
     if (!username || !password) {
       throw new InvalidQueryError()
@@ -25,7 +25,7 @@ module.exports = {
 
     return next()
   },
-  'POST /api/user/register': async (ctx, next) => {
+  'POST /user/register': async (ctx, next) => {
     const { username, password } = ctx.request.body
     if (!username || !password) {
       throw new InvalidQueryError()
@@ -44,7 +44,7 @@ module.exports = {
 
     return next()
   },
-  'GET /api/user/me': async (ctx, next) => {
+  'GET /user/me': async (ctx, next) => {
     verify(ctx)
     const id = ctx.jwtData.data
     const user = await UserService.findById(id)
@@ -56,7 +56,7 @@ module.exports = {
     
     return next()
   },
-  'GET /api/user/refresh': async (ctx, next) => {
+  'GET /user/refresh': async (ctx, next) => {
     verify(ctx)
     const id = ctx.jwtData.data
     ctx.result = sign(id)

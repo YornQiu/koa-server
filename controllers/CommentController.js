@@ -2,7 +2,7 @@ const CommentService = require('@services').CommentService
 const { InvalidQueryError } = require('@libs/error')
 
 module.exports = {
-  'GET /api/comment/list': async (ctx, next) => {
+  'GET /comment/list': async (ctx, next) => {
     const { article_id } = ctx.query
     if (!article_id) {
       throw new InvalidQueryError()
@@ -15,7 +15,7 @@ module.exports = {
     }
     return next()
   },
-  'DELETE /api/comment/:id': async (ctx, next) => {
+  'DELETE /comment/:id': async (ctx, next) => {
     const { id } = ctx.params
     if (!id) {
       throw new InvalidQueryError()
@@ -28,7 +28,7 @@ module.exports = {
     }
     return next()
   },
-  'POST /api/comment': async (ctx, next) => {
+  'POST /comment': async (ctx, next) => {
     const data = ctx.request.body
     if (!data) {
       throw new InvalidQueryError()
@@ -41,7 +41,7 @@ module.exports = {
     }
     return next()
   },
-  'PUT /api/comment/:id': async (ctx, next) => {
+  'PUT /comment/:id': async (ctx, next) => {
     const { id } = ctx.params
     const data = ctx.request.body
     if (!data || !id) {

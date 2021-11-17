@@ -2,7 +2,7 @@ const ArticleService = require('@services').ArticleService
 const { InvalidQueryError } = require('@libs/error')
 
 module.exports = {
-  'GET /api/article/list': async (ctx, next) => {
+  'GET /article/list': async (ctx, next) => {
     const { pageNum, pageSize } = ctx.request.body
     const result = await ArticleService.findByPage({ state: 1 }, pageNum, pageSize)
     if (!result) {
@@ -12,7 +12,7 @@ module.exports = {
     }
     return next()
   },
-  'GET /api/article/:id': async (ctx, next) => {
+  'GET /article/:id': async (ctx, next) => {
     const { id } = ctx.request.params
     if (!id) {
       throw new InvalidQueryError()
