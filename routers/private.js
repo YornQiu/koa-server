@@ -1,11 +1,12 @@
-const router = require('koa-router')()
+const router = require('@koa/router')()
 const controllers = require('@controllers/AdminControllers')
 const { logger } = require('@middlewares/logger')
 const { verify } = require('@middlewares/jwt')
 
+const { methods } = router
+router.prefix('/api')
 router.use(verify)
 
-const { methods } = router
 /**
  * 校验接口，进行登录验证后才能访问
  */
