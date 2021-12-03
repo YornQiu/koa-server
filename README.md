@@ -1,7 +1,7 @@
-### 一、安装
+### 一、环境配置
 环境要求
-  node.js v7.6.0+
-  npm v3.x+
+  node.js v10.17.0+
+  npm v6.x+
 须安装pm2
 数据库连接见项目说明
 
@@ -10,6 +10,9 @@
 
 安装依赖
 ```npm i```
+
+  生产环境下应使用
+  ```npm install --production```
 
 启动development
 ```npm run dev```

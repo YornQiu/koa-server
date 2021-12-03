@@ -1,7 +1,9 @@
 const fs = require('fs')
 const { logger } = require('@middlewares/logger')
 
-const files = fs.readdirSync(__dirname).filter(file => file.endsWith('js') && file !== 'index.js')
+const files = fs
+  .readdirSync(__dirname)
+  .filter((file) => file.endsWith('js') && file !== 'index.js')
 const services = {}
 
 console.log(`processing services ...`)

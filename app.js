@@ -3,7 +3,7 @@ const koaBody = require('koa-body')
 const static = require('koa-static')
 const views = require('koa-views')
 const cors = require('koa2-cors')
-const helmet = require("koa-helmet")
+const helmet = require('koa-helmet')
 
 const publicRouter = require('@/routers/public')
 const privateRouter = require('@/routers/private')
@@ -20,16 +20,18 @@ app.use(loggerMiddleware)
 // Error Handler
 app.use(errorHandler)
 
-app.use(koaBody({
-  multipart: true,
-  formidable: {
-    keepExtensions: true,
-    maxFieldsSize: 10 * 1024 * 1024
-  }
-}))
+app.use(
+  koaBody({
+    multipart: true,
+    formidable: {
+      keepExtensions: true,
+      maxFieldsSize: 10 * 1024 * 1024,
+    },
+  })
+)
 
 // Static
-app.use(static(config.publicDir))
+app.use(static(config?.publicDir))
 
 // Helmet
 app.use(helmet())

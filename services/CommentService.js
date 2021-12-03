@@ -5,7 +5,6 @@ class CommentService extends BaseDAO {
   constructor(model) {
     super(model)
   }
-
 }
 
 module.exports = new CommentService(Comment)
