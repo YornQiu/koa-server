@@ -33,7 +33,8 @@ class BaseDAO {
    */
   async findByPage(condition = {}, pageNum = 1, pageSize = 10) {
     const count = await this.model.countDocuments(condition)
-    const list = await this.model.find(condition)
+    const list = await this.model
+      .find(condition)
       .skip((parseInt(pageNum) - 1) * parseInt(pageSize))
       .limit(parseInt(pageSize))
       .sort({ _id: -1 })
@@ -42,7 +43,7 @@ class BaseDAO {
   }
   /**
    * 根据id查询
-   * @param {string} id 
+   * @param {string} id
    * @return {object} 查询结果
    */
   async findById(id) {
@@ -64,7 +65,10 @@ class BaseDAO {
    * @return {object} 查询结果，返回更新后的文档
    */
   async updateById(id, data, options) {
-    const result = await this.model.findByIdAndUpdate(id, data, { new: true, ...options })
+    const result = await this.model.findByIdAndUpdate(id, data, {
+      new: true,
+      ...options,
+    })
     return result
   }
   /**

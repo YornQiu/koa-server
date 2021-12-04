@@ -14,7 +14,6 @@ const corsHandler = {
   allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
 }
 
-
 module.exports = {
-  corsHandler
+  corsHandler,
 }

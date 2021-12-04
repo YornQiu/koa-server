@@ -33,12 +33,15 @@ module.exports = {
     if (await UserService.findOne({ username })) {
       ctx.error = '用户已存在'
     } else {
-      const user = await UserService.save({ username, password: utils.md5(password) })
+      const user = await UserService.save({
+        username,
+        password: utils.md5(password),
+      })
       ctx.result = {
         id: user.id,
         username: user.username,
         nickname: user.nickname,
-        token: sign(user.id)
+        token: sign(user.id),
       }
     }
 
@@ -53,7 +56,7 @@ module.exports = {
       username: user.username,
       nickname: user.nickname,
     }
-    
+
     return next()
   },
   'GET /user/refresh': async (ctx, next) => {
@@ -62,5 +65,5 @@ module.exports = {
     ctx.result = sign(id)
 
     return next()
-  }
+  },
 }

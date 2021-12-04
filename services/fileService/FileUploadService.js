@@ -39,7 +39,7 @@ class FileUploadService {
       return {
         code: -1,
         fileName: file.name,
-        msg: '文件格式不支持'
+        msg: '文件格式不支持',
       }
     }
 
@@ -71,7 +71,7 @@ class FileUploadService {
     return {
       status: true,
       fileName,
-      filePath: `${this.uploadPath}/${fileName}`
+      filePath: `${this.uploadPath}/${fileName}`,
     }
   }
 
@@ -86,7 +86,7 @@ class FileUploadService {
       for (const key in files) {
         const file = files[key]
         if (Object.prototype.toString.call(file) === '[object Array]') {
-          file.forEach(item => filePaths.push(this.writeFile(item)))
+          file.forEach((item) => filePaths.push(this.writeFile(item)))
         } else {
           filePaths.push(this.writeFile(file))
         }

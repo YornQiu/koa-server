@@ -8,7 +8,7 @@ module.exports = {
   tokenConfig: {
     secret: 'havana',
     expired: 60 * 60 * 0.5, //0.5h
-    refresh: 60 * 60 * 1 // 1h
+    refresh: 60 * 60 * 1, // 1h
   },
   encrypt: false, // 是否使用加密算法处理密码，默认不处理
   publicDir: path.resolve(__dirname, './public'), // 资源文件路径
@@ -21,5 +21,5 @@ module.exports = {
     pwd: 'root',
     db: 'test',
     authSource: 'admin',
-  }
+  },
 }

@@ -56,7 +56,8 @@
       "ecmaVersion": 2020
     },
     "globals": {
-      "config": "readonly"
+      "config": "readonly",
+      "logger": "readonly"
     },
     "rules": {
       "no-debugger": "off"

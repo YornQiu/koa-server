@@ -5,14 +5,22 @@ const jwt = require('jsonwebtoken')
 const sign = (data) => {
   return {
     token_type: 'bearer',
-    access_token: jwt.sign({
-      data,
-      exp: Math.floor(Date.now() / 1000) + tokenConfig.expired
-    }, tokenConfig.secret),
-    refresh_token: jwt.sign({
-      data,
-      exp: Math.floor(Date.now() / 1000) + (tokenConfig.refresh || tokenConfig.expired * 2)
-    }, tokenConfig.secret),
+    access_token: jwt.sign(
+      {
+        data,
+        exp: Math.floor(Date.now() / 1000) + tokenConfig.expired,
+      },
+      tokenConfig.secret
+    ),
+    refresh_token: jwt.sign(
+      {
+        data,
+        exp:
+          Math.floor(Date.now() / 1000) +
+          (tokenConfig.refresh || tokenConfig.expired * 2),
+      },
+      tokenConfig.secret
+    ),
   }
 }
 const verify = (ctx) => {
@@ -24,10 +32,11 @@ const verify = (ctx) => {
       throw new UnauthorizedError()
     }
   } catch (err) {
-      throw new UnauthorizedError()
+    throw new UnauthorizedError()
   }
 }
 
 module.exports = {
-  sign, verify
+  sign,
+  verify,
 }

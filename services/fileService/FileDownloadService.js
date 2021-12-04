@@ -14,17 +14,22 @@ class FileDownloadService {
 
   execute(ctx) {
     const { filePath, fileName } = this
-    if(!fs.existsSync(filePath)) {
+    if (!fs.existsSync(filePath)) {
       console.log('文件不存在：' + filePath)
       ctx.error = '文件不存在'
     } else {
       try {
         const stat = fs.statSync(filePath)
-        const filename = fileName ? fileName + path.extname(filePath) : path.basename(filePath)
+        const filename = fileName
+          ? fileName + path.extname(filePath)
+          : path.basename(filePath)
         const fileStream = fs.createReadStream(filePath)
-        
+
         ctx.set('Content-type', 'application/octet-stream')
-        ctx.set('Content-Disposition', 'attachment;filename=' + encodeURIComponent(filename))
+        ctx.set(
+          'Content-Disposition',
+          'attachment;filename=' + encodeURIComponent(filename)
+        )
         ctx.set('Content-Length', stat.size)
         ctx.body = fileStream
       } catch (error) {

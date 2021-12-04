@@ -82,5 +82,5 @@ module.exports = {
       ctx.result = result
     }
     return next()
-  }
+  },
 }
