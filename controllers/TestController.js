@@ -12,16 +12,16 @@ module.exports = {
   },
   'POST /upload': async (ctx, next) => {
     const fileUploadService = new FileUploadService()
-    fileUploadService.execute(ctx)
+    await fileUploadService.execute(ctx)
 
     return next()
   },
   'GET /download': async (ctx, next) => {
     const fileDownloadService = new FileDownloadService(
-      config.publicDir + '/img/2020/0/Koala.jpg',
+      config.publicDir + '/img/2020/01/Koala.jpg',
       '考拉'
     )
-    fileDownloadService.execute(ctx)
+    await fileDownloadService.execute(ctx)
 
     return next()
   },
