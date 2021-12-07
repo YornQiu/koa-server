@@ -45,6 +45,7 @@
   "eslintConfig": {
     "root": true,
     "env": {
+      "es6": true,
       "node": true
     },
     "extends": [
@@ -59,8 +60,6 @@
       "config": "readonly",
       "logger": "readonly"
     },
-    "rules": {
-      "no-debugger": "off"
-    }
+    "rules": {}
   }
 }

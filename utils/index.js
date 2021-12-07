@@ -1,5 +1,6 @@
 const fs = require('fs')
 const path = require('path')
+const { access } = require('fs/promises')
 const CryptoJS = require('crypto-js')
 
 const SECRET = 'KOA_SERVER_2020'
@@ -7,7 +8,7 @@ const SECRET = 'KOA_SERVER_2020'
 module.exports = {
   /**
    * 递归创建多级目录
-   * @param {String} dirname 路径
+   * @param {string} dirname 路径
    */
   mkdirsSync(dirname) {
     if (fs.existsSync(dirname)) {
@@ -21,8 +22,22 @@ module.exports = {
   },
 
   /**
+   * 判断文件是否存在，基于fs/promises
+   * @param {string} path 文件路径
+   * @returns {boolean} 文件是否存在
+   */
+  async exists(path) {
+    try {
+      await access(path)
+      return true
+    } catch (error) {
+      return false
+    }
+  },
+
+  /**
    * 生成uuid
-   * @returns {String} uuid
+   * @returns {string} uuid
    */
   uuid() {
     var s = []
@@ -44,8 +59,8 @@ module.exports = {
    * DateFormat(Date, 'yyyy-MM-dd hh:mm:ss.S') ==> 2006-07-02 08:09:04.423
    * DateFormat(Date, 'yyyy-M-d h:m:s.S')      ==> 2006-7-2 8:9:4.18
    * @param {Date} date 日期
-   * @param {String} fmt 字符串格式
-   * @returns {String} 格式化的日期
+   * @param {string} fmt 字符串格式
+   * @returns {string} 格式化的日期
    */
   dateFormat(date, fmt) {
     var o = {
@@ -75,8 +90,8 @@ module.exports = {
 
   /**
    * 解密
-   * @param {String} data 数据，算法为AES
-   * @returns {String} 解密后的数据
+   * @param {string} data 数据，算法为AES
+   * @returns {string} 解密后的数据
    */
   decrypt(data) {
     return (
@@ -88,9 +103,9 @@ module.exports = {
 
   /**
    * 加密
-   * @param {String} data 数据
-   * @param {String} alg 加密算法,支持MD5，AES
-   * @returns {String} 加密后的数据
+   * @param {string} data 数据
+   * @param {string} alg 加密算法,支持MD5，AES
+   * @returns {string} 加密后的数据
    */
   encrypt(data) {
     return (data && CryptoJS.AES.encrypt(data, SECRET).toString()) || ''
@@ -98,8 +113,8 @@ module.exports = {
 
   /**
    * md5编码
-   * @param {String} data 数据
-   * @returns {String} 编码后的数据
+   * @param {string} data 数据
+   * @returns {string} 编码后的数据
    */
   md5(data) {
     return (data && CryptoJS.MD5(data).toString()) || ''

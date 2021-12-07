@@ -1,27 +1,29 @@
-const fs = require('fs')
-const path = require('path')
+const { createReadStream, createWriteStream } = require('fs')
+const { unlink } = require('fs/promises')
 const utils = require('@utils')
+const path = require('path')
 
-/**
- * 初始化参数设置
- * @param {String} uploadPath 文件保存路径
- * @param {Boolean} rename 是否重命名同名文件，默认为true， 为false时会覆盖同名文件
- * @param {Array} types 允许的文件类型
- */
 class FileUploadService {
+  /**
+   * constructor
+   * @param {string} uploadPath 文件保存路径
+   * @param {boolean} rename 是否重命名同名文件，默认为true，为false时会覆盖同名文件
+   * @param {string[]} types 允许的文件类型
+   */
   constructor(uploadPath, rename, types) {
     this.uploadPath = uploadPath || '/data'
     this.uploadDir = path.join(config.publicDir, this.uploadPath)
     this.types = types || []
-    this.rename = true
-    if (rename !== null && rename !== undefined) {
-      this.rename = rename
-    }
+    this.rename = rename === false ? false : true
   }
 
-  // 检查文件类型
+  /**
+   * check file type
+   * @param {File} file
+   * @returns {boolean}
+   */
   checkType(file) {
-    // 为空时不进行校验
+    // do not check if types is empty
     if (this.types.length === 0) {
       return true
     }
@@ -32,69 +34,88 @@ class FileUploadService {
     return false
   }
 
-  // 写文件
-  writeFile(file) {
-    // 检查文件类型
+  /**
+   * write file with stream
+   * @param {File} file
+   * @returns {object} result
+   */
+  async writeFile(file) {
+    const { uploadDir, uploadPath, rename } = this
+
     if (!this.checkType(file)) {
       return {
-        code: -1,
+        status: false,
         fileName: file.name,
-        msg: '文件格式不支持',
+        msg: '文件格式错误',
       }
     }
 
     let fileName = file.name
-    let filePath = path.join(this.uploadDir, fileName)
+    let filePath = path.join(uploadDir, fileName)
 
-    // 判断文件是否已存在，是否须重命名
-    if (fs.existsSync(filePath) && this.rename) {
-      const name = fileName.substring(0, fileName.lastIndexOf('.'))
-      const ext = fileName.substring(fileName.lastIndexOf('.'))
+    // check if the file exists and needs to be renamed
+    if ((await utils.exists(filePath)) && rename) {
+      const ext = path.extname(fileName)
+      const base = path.basename(fileName, ext)
+
       let index = 1
-      while (true) {
-        fileName = `${name}(${index})${ext}`
-        filePath = path.join(this.uploadDir, fileName)
-        if (fs.existsSync(filePath)) {
+      while (index) {
+        fileName = `${base}(${index})${ext}`
+        filePath = path.join(uploadDir, fileName)
+        if (await utils.exists(filePath)) {
           index += 1
         } else break
       }
     }
 
-    const reader = fs.createReadStream(file.path)
-    const writer = fs.createWriteStream(filePath)
-    reader.pipe(writer)
+    const reader = createReadStream(file.path)
+    const writer = createWriteStream(filePath)
 
-    fs.unlink(file.path, (error) => {
-      if (error) throw error
+    // promisify the callback function
+    // NOTE: stream/promises api is available, but requires nodejs v15.0.0+
+    await new Promise((resolve, reject) => {
+      reader.pipe(writer)
+      reader.on('end', async () => {
+        await unlink(file.path) // remove temporary file after stream end
+        resolve()
+      })
+      reader.on('error', (err) => reject(err))
     })
 
     return {
       status: true,
       fileName,
-      filePath: `${this.uploadPath}/${fileName}`,
+      filePath: `${uploadPath}/${fileName}`,
     }
   }
 
-  execute(ctx) {
-    // 若路径不存在，先创建路径
+  async execute(ctx) {
+    // mkdir if the dir doesn't exist
     utils.mkdirsSync(this.uploadDir)
 
-    const filePaths = []
-    const files = ctx.request.files || {}
+    const fileResults = []
+    const fileForm = ctx.request.files || {}
 
     try {
-      for (const key in files) {
-        const file = files[key]
-        if (Object.prototype.toString.call(file) === '[object Array]') {
-          file.forEach((item) => filePaths.push(this.writeFile(item)))
+      for (const key in fileForm) {
+        const files = fileForm[key]
+        if (Object.prototype.toString.call(files) === '[object Array]') {
+          for (const file of files) {
+            fileResults.push(await this.writeFile(file))
+          }
         } else {
-          filePaths.push(this.writeFile(file))
+          fileResults.push(await this.writeFile(files))
         }
       }
-      ctx.result = filePaths
+
+      ctx.result = fileResults
     } catch (error) {
+      if (error.code === 'EACCES') {
+        ctx.error = '文件拒绝访问'
+      } else {
+        ctx.error = '保存文件出错'
+      }
       console.log(error)
-      ctx.error = '文件保存失败'
     }
   }
 }
