@@ -25,7 +25,7 @@ app.use(
     multipart: true,
     formidable: {
       keepExtensions: true,
-      maxFieldsSize: 10 * 1024 * 1024,
+      maxFieldsSize: 1024 * 1024 * 1024, // 1GB
     },
   })
 )

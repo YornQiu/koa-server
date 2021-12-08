@@ -14,7 +14,6 @@
   "dependencies": {
     "@koa/router": "^10.1.1",
     "crypto-js": "^4.1.1",
-    "formidable": "^1.2.2",
     "jsonwebtoken": "^8.5.1",
     "koa": "^2.13.3",
     "koa-body": "4.2.0",
@@ -59,7 +58,6 @@
     "globals": {
       "config": "readonly",
       "logger": "readonly"
-    },
-    "rules": {}
+    }
   }
 }

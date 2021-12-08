@@ -4,6 +4,7 @@
     "module": "commonjs",
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
+    "sourceMap": true,
     "paths": {
       "@/*": ["./*"],
       "@*": ["*"]
