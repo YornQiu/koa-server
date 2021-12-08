@@ -31,7 +31,7 @@ app.use(
 )
 
 // Static
-app.use(static(config?.publicDir))
+app.use(static(config.publicDir))
 
 // Helmet
 app.use(helmet())
