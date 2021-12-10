@@ -1,5 +1,5 @@
 const { createReadStream, createWriteStream } = require('fs')
-const { unlink } = require('fs/promises')
+const { unlink, mkdir } = require('fs/promises')
 const utils = require('@utils')
 const path = require('path')
 
@@ -50,33 +50,36 @@ class FileUploadService {
       }
     }
 
-    let fileName = file.name
-    let filePath = path.join(uploadDir, fileName)
+    const fileName = file.name
+    const filePath = file.path
+
+    let saveName = fileName
+    let savePath = path.join(uploadDir, fileName)
 
     // check if the file exists and needs to be renamed
-    if ((await utils.exists(filePath)) && rename) {
-      const ext = path.extname(fileName)
-      const base = path.basename(fileName, ext)
+    if ((await utils.exists(savePath)) && rename) {
+      const ext = path.extname(saveName)
+      const base = path.basename(saveName, ext)
 
       let index = 1
       while (index) {
-        fileName = `${base}(${index})${ext}`
-        filePath = path.join(uploadDir, fileName)
-        if (await utils.exists(filePath)) {
+        saveName = `${base}(${index})${ext}`
+        savePath = path.join(uploadDir, saveName)
+        if (await utils.exists(savePath)) {
           index += 1
         } else break
       }
     }
 
-    const reader = createReadStream(file.path)
-    const writer = createWriteStream(filePath)
+    const reader = createReadStream(filePath)
+    const writer = createWriteStream(savePath)
 
     // promisify the callback function
     // NOTE: stream/promises api is available, but requires nodejs v15.0.0+
     await new Promise((resolve, reject) => {
       reader.pipe(writer)
       reader.on('end', async () => {
-        await unlink(file.path) // remove temporary file after stream end
+        await unlink(filePath) // remove temporary file after stream end
         resolve()
       })
       reader.on('error', (err) => reject(err))
@@ -85,13 +88,13 @@ class FileUploadService {
     return {
       status: true,
       fileName,
-      filePath: `${uploadPath}/${fileName}`,
+      filePath: `${uploadPath}/${saveName}`,
     }
   }
 
   async execute(ctx) {
     // mkdir if the dir doesn't exist
-    utils.mkdirsSync(this.uploadDir)
+    await mkdir(this.uploadDir, { recursive: true })
 
     const fileResults = []
     const fileForm = ctx.request.files || {}

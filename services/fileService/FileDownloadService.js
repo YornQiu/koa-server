@@ -1,6 +1,6 @@
 const path = require('path')
-const { stat } = require('fs/promises')
-const { createReadStream } = require('fs')
+const { stat, access } = require('fs/promises')
+const { createReadStream, constants } = require('fs')
 
 class FileDownloadService {
   /**
@@ -18,6 +18,7 @@ class FileDownloadService {
 
     try {
       const stats = await stat(filePath)
+      await access(filePath, constants.R_OK)
       const readStream = createReadStream(filePath)
       const filename = fileName
         ? fileName + path.extname(filePath)
