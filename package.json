@@ -12,6 +12,7 @@
     "stop": "pm2 stop ecosystem.config.js"
   },
   "dependencies": {
+    "@koa/cors": "^3.1.0",
     "@koa/router": "^10.1.1",
     "crypto-js": "^4.1.1",
     "jsonwebtoken": "^8.5.1",
@@ -20,7 +21,6 @@
     "koa-helmet": "^6.1.0",
     "koa-static": "^5.0.0",
     "koa-views": "^7.0.1",
-    "koa2-cors": "^2.0.6",
     "log4js": "^6.3.0",
     "module-alias": "^2.2.2",
     "mongoose": "^6.0.10"

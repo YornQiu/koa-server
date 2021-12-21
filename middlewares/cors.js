@@ -1,5 +1,5 @@
 // 跨域
-const corsHandler = {
+module.exports = {
   origin: function (ctx) {
     if (ctx.url === '/test') {
       // 这里可以配置不运行跨域的接口地址
@@ -12,8 +12,4 @@ const corsHandler = {
   credentials: true,
   allowMethods: ['GET', 'POST', 'DELETE', 'PUT'],
   allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
-}
-
-module.exports = {
-  corsHandler,
 }

@@ -128,6 +128,13 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
+"@koa/cors@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.npm.taobao.org/@koa/cors/download/@koa/cors-3.1.0.tgz#618bb073438cfdbd3ebd0e648a76e33b84f3a3b2"
+  integrity sha1-YYuwc0OM/b0+vQ5kinbjO4Tzo7I=
+  dependencies:
+    vary "^1.1.2"
+
 "@koa/router@^10.1.1":
   version "10.1.1"
   resolved "https://registry.nlark.com/@koa/router/download/@koa/router-10.1.1.tgz"
@@ -1256,11 +1263,6 @@ koa-views@^7.0.1:
     mz "^2.4.0"
     pretty "^2.0.0"
     resolve-path "^1.4.0"
-
-koa2-cors@^2.0.6:
-  version "2.0.6"
-  resolved "https://registry.npmjs.org/koa2-cors/-/koa2-cors-2.0.6.tgz"
-  integrity sha512-JRCcSM4lamM+8kvKGDKlesYk2ASrmSTczDtGUnIadqMgnHU4Ct5Gw7Bxt3w3m6d6dy3WN0PU4oMP43HbddDEWg==
 
 koa@^2.13.3:
   version "2.13.3"

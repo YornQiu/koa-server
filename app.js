@@ -2,15 +2,15 @@ const Koa = require('koa')
 const koaBody = require('koa-body')
 const static = require('koa-static')
 const views = require('koa-views')
-const cors = require('koa2-cors')
+const cors = require('@koa/cors')
 const helmet = require('koa-helmet')
 
 const publicRouter = require('@/routers/public')
 const privateRouter = require('@/routers/private')
 const viewRouter = require('@/routers/view')
+const corsHandler = require('@middlewares/cors')
 const { loggerMiddleware } = require('@middlewares/logger')
 const { errorHandler, responseHandler } = require('@middlewares/response')
-const { corsHandler } = require('@middlewares/cors')
 
 const app = new Koa()
 
@@ -39,9 +39,8 @@ app.use(helmet())
 // Cors
 app.use(cors(corsHandler))
 
-//View
+// View
 app.use(views(config.viewsDir))
-app.use(static(config.viewsDir))
 
 // Routes
 app.use(publicRouter.routes(), publicRouter.allowedMethods())
