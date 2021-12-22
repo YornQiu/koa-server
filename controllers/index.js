@@ -1,9 +1,9 @@
-const fs = require('fs')
-const { logger } = require('@middlewares/logger')
+import { readdirSync } from 'fs'
+import { logger } from '@middlewares/logger'
 
-const files = fs
-  .readdirSync(__dirname)
-  .filter((file) => file.endsWith('.js') && file !== 'index.js')
+const files = readdirSync(__dirname).filter(
+  (file) => file.endsWith('.js') && file !== 'index.js'
+)
 const controllers = {}
 
 console.log(`processing controllers ...`)
@@ -22,4 +22,4 @@ files.forEach((file) => {
 
 logger.info('Controllers mapped')
 
-module.exports = controllers
+export default controllers

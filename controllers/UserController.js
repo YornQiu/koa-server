@@ -1,10 +1,10 @@
-const { sign } = require('@middlewares/jwt')
-const utils = require('@utils')
-const UserService = require('@services').UserService
-const { InvalidQueryError } = require('@libs/error')
-const { verify } = require('@middlewares/jwt')
+import { sign } from '@middlewares/jwt'
+import { decrypt, md5 } from '@utils'
+import { UserService } from '@services'
+import { InvalidQueryError } from '@libs/error'
+import { verify } from '@middlewares/jwt'
 
-module.exports = {
+export default {
   'POST /user/login': async (ctx, next) => {
     const { username, password } = ctx.request.body
     if (!username || !password) {
@@ -15,8 +15,8 @@ module.exports = {
       ctx.error = '用户不存在'
       ctx.code = -1
     } else {
-      const pwd = config.encrypt ? utils.decrypt(password) : password
-      if (user.password !== utils.md5(pwd)) {
+      const pwd = config.encrypt ? decrypt(password) : password
+      if (user.password !== md5(pwd)) {
         ctx.error = '密码错误'
       } else {
         ctx.result = sign(user.id)
@@ -35,7 +35,7 @@ module.exports = {
     } else {
       const user = await UserService.save({
         username,
-        password: utils.md5(password),
+        password: md5(password),
       })
       ctx.result = {
         id: user.id,

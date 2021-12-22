@@ -1,8 +1,9 @@
-const router = require('@koa/router')()
-const controllers = require('@controllers/AdminControllers')
-const { logger } = require('@middlewares/logger')
-const { verify } = require('@middlewares/jwt')
+import koaRouter from '@koa/router'
+import controllers from '@controllers/AdminControllers'
+import { logger } from '@middlewares/logger'
+import { verify } from '@middlewares/jwt'
 
+const router = new koaRouter()
 const { methods } = router
 router.prefix('/api')
 router.use(verify)
@@ -21,4 +22,4 @@ for (const url in controllers) {
 
 logger.info('Private routes registered')
 
-module.exports = router
+export default router

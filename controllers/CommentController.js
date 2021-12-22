@@ -1,7 +1,7 @@
-const CommentService = require('@services').CommentService
-const { InvalidQueryError } = require('@libs/error')
+import { CommentService } from '@services'
+import { InvalidQueryError } from '@libs/error'
 
-module.exports = {
+export default {
   'GET /comment/list': async (ctx, next) => {
     const { article_id } = ctx.query
     if (!article_id) {

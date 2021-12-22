@@ -5,7 +5,7 @@ class CommonError extends Error {
   }
 }
 
-module.exports = {
+export default {
   CommonError,
   /**
    * 无效的参数

@@ -1,9 +1,9 @@
-const fs = require('fs')
-const { logger } = require('@middlewares/logger')
+import { readdirSync } from 'fs'
+import { logger } from '@middlewares/logger'
 
-const files = fs
-  .readdirSync(__dirname)
-  .filter((file) => file.endsWith('js') && file !== 'index.js')
+const files = readdirSync(__dirname).filter(
+  (file) => file.endsWith('js') && file !== 'index.js'
+)
 const services = {}
 
 console.log(`processing services ...`)
@@ -15,4 +15,4 @@ for (const file of files) {
 
 logger.info('Services created')
 
-module.exports = services
+export default services

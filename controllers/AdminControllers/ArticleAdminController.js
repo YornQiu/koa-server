@@ -1,8 +1,8 @@
-const ArticleService = require('@services').ArticleService
-const ImgUploadService = require('@services/fileService/ImgUploadService')
-const { InvalidQueryError } = require('@libs/error')
+import { ArticleService } from '@services'
+import ImgUploadService from '@services/fileService/ImgUploadService'
+import { InvalidQueryError } from '@libs/error'
 
-module.exports = {
+export default {
   'DELETE /article/:id': async (ctx, next) => {
     const { id } = ctx.params
     if (!id) {

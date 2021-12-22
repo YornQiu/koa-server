@@ -1,4 +1,4 @@
-class BaseDAO {
+export default class BaseDAO {
   /**
    * 构造方法
    * @param {object} model mongoose model对象，初始化时必需
@@ -100,5 +100,3 @@ class BaseDAO {
     return result
   }
 }
-
-module.exports = BaseDAO

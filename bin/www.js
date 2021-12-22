@@ -4,8 +4,8 @@ require('module-alias/register')
 global.config = require('@/config')
 global.logger = require('@middlewares/logger').logger
 
-const http = require('http')
-const app = require('@/app')
+import { createServer } from 'http'
+import { callback } from '@/app.js'
 
 /**
  * Normalize a port into a number, string, or false.
@@ -61,7 +61,7 @@ function onListening() {
 }
 
 const port = normalizePort(process.env.PORT || config.port)
-const server = http.createServer(app.callback())
+const server = createServer(callback())
 
 server.listen(port)
 server.on('error', onError)

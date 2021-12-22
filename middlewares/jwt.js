@@ -1,8 +1,9 @@
-const { UnauthorizedError } = require('@libs/error')
-const { tokenConfig } = config
-const jwt = require('jsonwebtoken')
+import { UnauthorizedError } from '@libs/error'
+import jwt from 'jsonwebtoken'
 
-const sign = (data) => {
+const { tokenConfig } = config
+
+export const sign = (data) => {
   return {
     token_type: 'bearer',
     access_token: jwt.sign(
@@ -23,7 +24,8 @@ const sign = (data) => {
     ),
   }
 }
-const verify = (ctx) => {
+
+export const verify = (ctx) => {
   try {
     if (typeof ctx.request.headers.authorization === 'string') {
       const token = ctx.request.headers.authorization.slice(7)
@@ -34,9 +36,4 @@ const verify = (ctx) => {
   } catch (err) {
     throw new UnauthorizedError()
   }
-}
-
-module.exports = {
-  sign,
-  verify,
 }

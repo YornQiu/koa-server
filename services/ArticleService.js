@@ -1,5 +1,5 @@
-const BaseDAO = require('@libs/baseDAO')
-const Article = require('@models').article
+import BaseDAO from '@libs/baseDAO'
+import { article } from '@models'
 
 class ArticleService extends BaseDAO {
   constructor(model) {
@@ -7,4 +7,4 @@ class ArticleService extends BaseDAO {
   }
 }
 
-module.exports = new ArticleService(Article)
+export default new ArticleService(article)

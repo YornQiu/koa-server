@@ -1,8 +1,8 @@
-const path = require('path')
+import { resolve } from 'path'
 
 const PROJECT_NAME = 'koa-server'
 
-module.exports = {
+export default {
   name: PROJECT_NAME,
   port: '8881',
   tokenConfig: {
@@ -11,9 +11,9 @@ module.exports = {
     refresh: 60 * 60 * 1, // 1h
   },
   encrypt: false, // 是否使用加密算法处理密码，默认不处理
-  publicDir: path.resolve(__dirname, './public'), // 资源文件路径
-  viewsDir: path.resolve(__dirname, './views'), // 静态页面文件路径
-  logPath: path.resolve(__dirname, `./logs/${PROJECT_NAME}`), // 日志文件路径
+  publicDir: resolve(__dirname, './public'), // 资源文件路径
+  viewsDir: resolve(__dirname, './views'), // 静态页面文件路径
+  logPath: resolve(__dirname, `./logs/${PROJECT_NAME}`), // 日志文件路径
   mongoDB: {
     host: '127.0.0.1',
     port: 27017,

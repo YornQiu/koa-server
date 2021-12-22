@@ -1,7 +1,7 @@
-const ArticleService = require('@services').ArticleService
-const { InvalidQueryError } = require('@libs/error')
+import { ArticleService } from '@services'
+import { InvalidQueryError } from '@libs/error'
 
-module.exports = {
+export default {
   'GET /article/list': async (ctx, next) => {
     const { pageNum, pageSize } = ctx.request.body
     const result = await ArticleService.findByPage(

@@ -1,9 +1,9 @@
 /**
  * pm2配置文件
  */
-const { name } = require('./config')
+import { name } from './config'
 
-module.exports = {
+export default {
   apps: [
     {
       name: name,

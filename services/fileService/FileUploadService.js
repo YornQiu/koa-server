@@ -1,7 +1,7 @@
-const { createReadStream, createWriteStream } = require('fs')
-const { unlink, mkdir } = require('fs/promises')
-const utils = require('@utils')
-const path = require('path')
+import { createReadStream, createWriteStream } from 'fs'
+import { unlink, mkdir } from 'fs/promises'
+import { exists } from '@utils'
+import { join, extname, basename } from 'path'
 
 class FileUploadService {
   /**
@@ -12,7 +12,7 @@ class FileUploadService {
    */
   constructor(uploadPath, rename, types) {
     this.uploadPath = uploadPath || '/data'
-    this.uploadDir = path.join(config.publicDir, this.uploadPath)
+    this.uploadDir = join(config.publicDir, this.uploadPath)
     this.types = types || []
     this.rename = rename === false ? false : true
   }
@@ -54,18 +54,18 @@ class FileUploadService {
     const filePath = file.path
 
     let saveName = fileName
-    let savePath = path.join(uploadDir, fileName)
+    let savePath = join(uploadDir, fileName)
 
     // check if the file exists and needs to be renamed
-    if ((await utils.exists(savePath)) && rename) {
-      const ext = path.extname(saveName)
-      const base = path.basename(saveName, ext)
+    if ((await exists(savePath)) && rename) {
+      const ext = extname(saveName)
+      const base = basename(saveName, ext)
 
       let index = 1
       while (index) {
         saveName = `${base}(${index})${ext}`
-        savePath = path.join(uploadDir, saveName)
-        if (await utils.exists(savePath)) {
+        savePath = join(uploadDir, saveName)
+        if (await exists(savePath)) {
           index += 1
         } else break
       }
@@ -123,4 +123,4 @@ class FileUploadService {
   }
 }
 
-module.exports = FileUploadService
+export default FileUploadService

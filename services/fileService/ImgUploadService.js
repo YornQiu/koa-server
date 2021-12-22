@@ -1,4 +1,4 @@
-const FileUploadService = require('./FileUploadService')
+import FileUploadService from './FileUploadService'
 
 /**
  * 继承自文件上传类，改变上传路径和允许文件类型
@@ -9,4 +9,4 @@ class ImgUploadService extends FileUploadService {
   }
 }
 
-module.exports = ImgUploadService
+export default ImgUploadService

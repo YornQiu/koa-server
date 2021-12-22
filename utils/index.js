@@ -1,21 +1,21 @@
-const fs = require('fs')
-const path = require('path')
-const { access } = require('fs/promises')
-const CryptoJS = require('crypto-js')
+import { existsSync, mkdirSync } from 'fs'
+import { dirname } from 'path'
+import { access } from 'fs/promises'
+import { AES, enc, MD5 } from 'crypto-js'
 
 const SECRET = 'KOA_SERVER_2020'
 
-module.exports = {
+export default {
   /**
    * 递归创建多级目录
-   * @param {string} dirname 路径
+   * @param {string} path 路径
    */
-  mkdirsSync(dirname) {
-    if (fs.existsSync(dirname)) {
+  mkdirsSync(path) {
+    if (existsSync(path)) {
       return true
     } else {
-      if (this.mkdirsSync(path.dirname(dirname))) {
-        fs.mkdirSync(dirname)
+      if (this.mkdirsSync(dirname(path))) {
+        mkdirSync(path)
         return true
       }
     }
@@ -94,11 +94,7 @@ module.exports = {
    * @returns {string} 解密后的数据
    */
   decrypt(data) {
-    return (
-      (data &&
-        CryptoJS.AES.decrypt(data, SECRET).toString(CryptoJS.enc.Utf8)) ||
-      ''
-    )
+    return (data && AES.decrypt(data, SECRET).toString(enc.Utf8)) || ''
   },
 
   /**
@@ -108,7 +104,7 @@ module.exports = {
    * @returns {string} 加密后的数据
    */
   encrypt(data) {
-    return (data && CryptoJS.AES.encrypt(data, SECRET).toString()) || ''
+    return (data && AES.encrypt(data, SECRET).toString()) || ''
   },
 
   /**
@@ -117,6 +113,6 @@ module.exports = {
    * @returns {string} 编码后的数据
    */
   md5(data) {
-    return (data && CryptoJS.MD5(data).toString()) || ''
+    return (data && MD5(data).toString()) || ''
   },
 }

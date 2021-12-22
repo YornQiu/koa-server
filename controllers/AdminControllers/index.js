@@ -1,8 +1,8 @@
-const fs = require('fs')
+import { readdirSync } from 'fs'
 
-const files = fs
-  .readdirSync(__dirname)
-  .filter((file) => file.endsWith('.js') && file !== 'index.js')
+const files = readdirSync(__dirname).filter(
+  (file) => file.endsWith('.js') && file !== 'index.js'
+)
 const controllers = {}
 
 /**
@@ -17,4 +17,4 @@ files.forEach((file) => {
   }
 })
 
-module.exports = controllers
+export default controllers

@@ -1,7 +1,7 @@
-const FileUploadService = require('@services/fileService/FileUploadService')
-const FileDownloadService = require('@services/fileService/FileDownloadService')
+import FileUploadService from '@services/fileService/FileUploadService'
+import FileDownloadService from '@services/fileService/FileDownloadService'
 
-module.exports = {
+export default {
   'GET /': async (ctx, next) => {
     ctx.result = 'Hello World!'
     return next()

@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "author": "YornQiu",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "node ./bin/www",
+    "dev": "node --no-warnings --experimental-modules --es-module-specifier-resolution=node --loader ./node_modules/module-alias/es6-loader.js ./bin/www",
     "start": "pm2 start ecosystem.config.js --env dev",
     "test": "pm2 start ecosystem.config.js --env test",
     "build": "pm2 start ecosystem.config.js --env pro",
@@ -41,6 +42,15 @@
     "@controllers": "controllers",
     "@middlewares": "middlewares"
   },
+  "imports": {
+    "@/*": "./*",
+    "@libs": "libs",
+    "@utils": "utils",
+    "@models": "models",
+    "@services": "services",
+    "@controllers": "controllers",
+    "@middlewares": "middlewares"
+  },
   "eslintConfig": {
     "root": true,
     "env": {
@@ -53,7 +63,8 @@
     ],
     "parserOptions": {
       "parser": "babel-eslint",
-      "ecmaVersion": 2020
+      "ecmaVersion": 2020,
+      "sourceType": "module"
     },
     "globals": {
       "config": "readonly",

@@ -1,16 +1,16 @@
-const Koa = require('koa')
-const koaBody = require('koa-body')
-const static = require('koa-static')
-const views = require('koa-views')
-const cors = require('@koa/cors')
-const helmet = require('koa-helmet')
+import Koa from 'koa'
+import koaBody from 'koa-body'
+import koaStatic from 'koa-static'
+import views from 'koa-views'
+import cors from '@koa/cors'
+import helmet from 'koa-helmet'
 
-const publicRouter = require('@/routers/public')
-const privateRouter = require('@/routers/private')
-const viewRouter = require('@/routers/view')
-const corsHandler = require('@middlewares/cors')
-const { loggerMiddleware } = require('@middlewares/logger')
-const { errorHandler, responseHandler } = require('@middlewares/response')
+import publicRouter from '@/routers/public'
+import privateRouter from '@/routers/private'
+import viewRouter from '@/routers/view'
+import corsHandler from '@middlewares/cors'
+import { loggerMiddleware } from '@middlewares/logger'
+import { errorHandler, responseHandler } from '@middlewares/response'
 
 const app = new Koa()
 
@@ -31,7 +31,7 @@ app.use(
 )
 
 // Static
-app.use(static(config.publicDir))
+app.use(koaStatic(config.publicDir))
 
 // Helmet
 app.use(helmet())
@@ -50,4 +50,4 @@ app.use(privateRouter.routes(), privateRouter.allowedMethods())
 // Response
 app.use(responseHandler)
 
-module.exports = app
+export default app

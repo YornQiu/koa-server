@@ -1,13 +1,13 @@
-const fs = require('fs')
-const path = require('path')
-const log4js = require('log4js')
+import { existsSync, mkdirSync } from 'fs'
+import { parse } from 'path'
+import { configure, getLogger } from 'log4js'
 
-const logsDir = path.parse(config.logPath).dir
-if (!fs.existsSync(logsDir)) {
-  fs.mkdirSync(logsDir)
+const logsDir = parse(config.logPath).dir
+if (!existsSync(logsDir)) {
+  mkdirSync(logsDir)
 }
 
-log4js.configure({
+configure({
   appenders: {
     console: { type: 'console' },
     dateFile: {
@@ -25,9 +25,9 @@ log4js.configure({
   },
 })
 
-const logger = log4js.getLogger()
+export const logger = getLogger()
 
-const loggerMiddleware = async (ctx, next) => {
+export const loggerMiddleware = async (ctx, next) => {
   const start = new Date()
   await next()
   const ms = new Date() - start
@@ -44,9 +44,4 @@ const loggerMiddleware = async (ctx, next) => {
     ctx.body
   )} - ${remoteAddress} - ${ms}ms`
   logger.info(logText)
-}
-
-module.exports = {
-  logger,
-  loggerMiddleware,
 }

@@ -1,9 +1,10 @@
-const mongoose = require('mongoose')
-const { logger } = require('@middlewares/logger')
+import { createConnection } from 'mongoose'
+import { logger } from '@middlewares/logger'
+
 const DBConfig = config.mongoDB
 
 const url = `mongodb://${DBConfig.user}:${DBConfig.pwd}@${DBConfig.host}:${DBConfig.port}/${DBConfig.db}?authSource=${DBConfig.authSource}`
-const mongo = mongoose.createConnection(url, {
+const mongo = createConnection(url, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 }) //创建一个数据库连接
@@ -18,4 +19,4 @@ mongo.on('disconnected', () =>
 
 mongo.once('open', () => logger.info('MongoDB is opened'))
 
-module.exports = mongo
+export default mongo
