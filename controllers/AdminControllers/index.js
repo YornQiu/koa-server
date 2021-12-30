@@ -10,11 +10,11 @@ const controllers = {}
  * 键为method + url
  * 值为对应处理函数
  */
-files.forEach((file) => {
+for (const file of files) {
   const controller = require(`./${file}`)
   for (const url in controller) {
     controllers[url] = controller[url]
   }
-})
+}
 
 module.exports = controllers

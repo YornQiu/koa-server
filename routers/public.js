@@ -1,6 +1,5 @@
 const router = require('@koa/router')()
 const controllers = require('@controllers')
-const { logger } = require('@middlewares/logger')
 
 const { methods } = router
 router.prefix('/api')

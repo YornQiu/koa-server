@@ -1,5 +1,4 @@
 const fs = require('fs')
-const { logger } = require('@middlewares/logger')
 
 const files = fs
   .readdirSync(__dirname)
@@ -13,12 +12,12 @@ console.log(`processing controllers ...`)
  * 键为method + url
  * 值为对应处理函数
  */
-files.forEach((file) => {
+for (const file of files) {
   const controller = require(`./${file}`)
   for (const url in controller) {
     controllers[url] = controller[url]
   }
-})
+}
 
 logger.info('Controllers mapped')
 

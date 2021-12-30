@@ -1,6 +1,5 @@
 const router = require('@koa/router')()
 const controllers = require('@controllers/AdminControllers')
-const { logger } = require('@middlewares/logger')
 const { verify } = require('@middlewares/jwt')
 
 const { methods } = router

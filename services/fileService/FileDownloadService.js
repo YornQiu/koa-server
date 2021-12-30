@@ -1,4 +1,4 @@
-const path = require('path')
+const { extname, basename } = require('path')
 const { stat, access } = require('fs/promises')
 const { createReadStream, constants } = require('fs')
 
@@ -21,8 +21,8 @@ class FileDownloadService {
       await access(filePath, constants.R_OK)
       const readStream = createReadStream(filePath)
       const filename = fileName
-        ? fileName + path.extname(filePath)
-        : path.basename(filePath)
+        ? fileName + extname(filePath)
+        : basename(filePath)
 
       ctx.set('Content-type', 'application/octet-stream')
       ctx.set(
