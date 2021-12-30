@@ -1,5 +1,7 @@
-import { ArticleService } from '@services'
-import { InvalidQueryError } from '@libs/error'
+import { InvalidQueryError } from '#libs/error.js'
+import services from '#services'
+
+const { ArticleService } = services
 
 export default {
   'GET /article/list': async (ctx, next) => {

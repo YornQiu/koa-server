@@ -1,9 +1,9 @@
-import { createConnection } from 'mongoose'
-import { logger } from '@middlewares/logger'
+import Mongoose from 'mongoose'
 
-const DBConfig = config.mongoDB
+const { createConnection } = Mongoose
+const { mongoDB } = config
 
-const url = `mongodb://${DBConfig.user}:${DBConfig.pwd}@${DBConfig.host}:${DBConfig.port}/${DBConfig.db}?authSource=${DBConfig.authSource}`
+const url = `mongodb://${mongoDB.user}:${mongoDB.pwd}@${mongoDB.host}:${mongoDB.port}/${mongoDB.db}?authSource=${mongoDB.authSource}`
 const mongo = createConnection(url, {
   useNewUrlParser: true,
   useUnifiedTopology: true,

@@ -1,8 +1,9 @@
 import { existsSync, mkdirSync } from 'fs'
 import { dirname } from 'path'
 import { access } from 'fs/promises'
-import { AES, enc, MD5 } from 'crypto-js'
+import CryptoJS from 'crypto-js'
 
+const { AES, enc, MD5 } = CryptoJS
 const SECRET = 'KOA_SERVER_2020'
 
 export default {

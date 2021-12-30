@@ -1,6 +1,6 @@
 import koaRouter from '@koa/router'
-import controllers from '@controllers'
-import { logger } from '@middlewares/logger'
+
+import controllers from '#controllers'
 
 const router = new koaRouter()
 const { methods } = router

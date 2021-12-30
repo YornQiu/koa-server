@@ -1,5 +1,6 @@
 import { readdirSync } from 'fs'
-import { logger } from '@middlewares/logger'
+
+const __dirname = new URL('.', import.meta.url).pathname
 
 const files = readdirSync(__dirname).filter(
   (file) => file.endsWith('js') && file !== 'index.js'
@@ -8,10 +9,10 @@ const services = {}
 
 console.log(`processing services ...`)
 
-for (const file of files) {
-  const service = require(`./${file}`)
+files.forEach(async (file) => {
+  const { default: service } = await import(`./${file}`)
   services[`${file.replace(/\.js/, '')}`] = service
-}
+})
 
 logger.info('Services created')
 

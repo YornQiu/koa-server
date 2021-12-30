@@ -1,28 +1,45 @@
+# 此分支为使用esModule重写版本
+  注意esModule与CommonJS环境下有诸多不同，并非简单将require替换为import即可，如：
+  + ESM文件必须带扩展名
+  + ESM下无`__dirname`，使用`URL`对象替代
+  + ESM的`import`具有顶部提升的特性，因此文件中import语句必先执行
+
+
 ### 一、环境配置
 环境要求
-  node.js v10.17.0+(或其他支持fs/promises api的版本)
-  npm v6.x+
-  推荐使用yarn
-须安装pm2，mongodb
+
+    node.js v10.17.0+(或其他支持fs/promises api的版本)
+    npm v6.x+
+    推荐使用yarn
+    须安装pm2，mongodb
+
 数据库连接见项目说明
 
+
 全局安装pm2
+
 ```npm i -g pm2```
 
 安装依赖
+
 ```npm i```
 
   生产环境下应使用
+
   ```npm install --production```
 
 启动development
+
 ```npm run dev```
 
 启动production
+
 ```npm run build```
 
 启动test
+
 ```npm run test```
+
 
 ### 二、项目结构
 

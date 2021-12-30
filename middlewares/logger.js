@@ -1,6 +1,8 @@
 import { existsSync, mkdirSync } from 'fs'
 import { parse } from 'path'
-import { configure, getLogger } from 'log4js'
+import log4js from 'log4js'
+
+const { configure, getLogger } = log4js
 
 const logsDir = parse(config.logPath).dir
 if (!existsSync(logsDir)) {

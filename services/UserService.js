@@ -1,5 +1,7 @@
-import BaseDAO from '@libs/baseDAO'
-import { user as User } from '@models'
+import BaseDAO from '#libs/baseDAO.js'
+import models from '#models'
+
+const { user } = models
 
 class UserService extends BaseDAO {
   constructor(model) {
@@ -7,4 +9,4 @@ class UserService extends BaseDAO {
   }
 }
 
-export default new UserService(User)
+export default new UserService(user)

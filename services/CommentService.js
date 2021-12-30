@@ -1,5 +1,7 @@
-import BaseDAO from '@libs/baseDAO'
-import { comment } from '@models'
+import BaseDAO from '#libs/baseDAO.js'
+import models from '#models'
+
+const { comment } = models
 
 class CommentService extends BaseDAO {
   constructor(model) {

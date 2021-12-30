@@ -1,5 +1,7 @@
-import { CommentService } from '@services'
-import { InvalidQueryError } from '@libs/error'
+import { InvalidQueryError } from '#libs/error.js'
+import services from '#services'
+
+const { CommentService } = services
 
 export default {
   'GET /comment/list': async (ctx, next) => {

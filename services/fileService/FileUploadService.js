@@ -1,7 +1,8 @@
 import { createReadStream, createWriteStream } from 'fs'
 import { unlink, mkdir } from 'fs/promises'
-import { exists } from '@utils'
 import { join, extname, basename } from 'path'
+
+import utils from '#utils'
 
 class FileUploadService {
   /**
@@ -57,7 +58,7 @@ class FileUploadService {
     let savePath = join(uploadDir, fileName)
 
     // check if the file exists and needs to be renamed
-    if ((await exists(savePath)) && rename) {
+    if ((await utils.exists(savePath)) && rename) {
       const ext = extname(saveName)
       const base = basename(saveName, ext)
 
@@ -65,7 +66,7 @@ class FileUploadService {
       while (index) {
         saveName = `${base}(${index})${ext}`
         savePath = join(uploadDir, saveName)
-        if (await exists(savePath)) {
+        if (await utils.exists(savePath)) {
           index += 1
         } else break
       }

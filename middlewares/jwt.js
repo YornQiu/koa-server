@@ -1,5 +1,6 @@
-import { UnauthorizedError } from '@libs/error'
 import jwt from 'jsonwebtoken'
+
+import { UnauthorizedError } from '#libs/error.js'
 
 const { tokenConfig } = config
 

@@ -5,12 +5,12 @@ import views from 'koa-views'
 import cors from '@koa/cors'
 import helmet from 'koa-helmet'
 
-import publicRouter from '@/routers/public'
-import privateRouter from '@/routers/private'
-import viewRouter from '@/routers/view'
-import corsHandler from '@middlewares/cors'
-import { loggerMiddleware } from '@middlewares/logger'
-import { errorHandler, responseHandler } from '@middlewares/response'
+import publicRouter from '#root/routers/public.js'
+import privateRouter from '#root/routers/private.js'
+import viewRouter from '#root/routers/view.js'
+import corsHandler from '#middlewares/cors.js'
+import { loggerMiddleware } from '#middlewares/logger.js'
+import { errorHandler, responseHandler } from '#middlewares/response.js'
 
 const app = new Koa()
 

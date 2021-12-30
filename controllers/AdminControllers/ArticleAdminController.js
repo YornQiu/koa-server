@@ -1,6 +1,8 @@
-import { ArticleService } from '@services'
-import ImgUploadService from '@services/fileService/ImgUploadService'
-import { InvalidQueryError } from '@libs/error'
+import ImgUploadService from '#services/fileService/ImgUploadService.js'
+import { InvalidQueryError } from '#libs/error.js'
+import services from '#services'
+
+const { ArticleService } = services
 
 export default {
   'DELETE /article/:id': async (ctx, next) => {

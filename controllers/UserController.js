@@ -1,8 +1,9 @@
-import { sign } from '@middlewares/jwt'
-import { decrypt, md5 } from '@utils'
-import { UserService } from '@services'
-import { InvalidQueryError } from '@libs/error'
-import { verify } from '@middlewares/jwt'
+import { sign, verify } from '#middlewares/jwt.js'
+import { InvalidQueryError } from '#libs/error.js'
+import services from '#services'
+import utils from '#utils'
+
+const { UserService } = services
 
 export default {
   'POST /user/login': async (ctx, next) => {
@@ -15,8 +16,8 @@ export default {
       ctx.error = '用户不存在'
       ctx.code = -1
     } else {
-      const pwd = config.encrypt ? decrypt(password) : password
-      if (user.password !== md5(pwd)) {
+      const pwd = config.encrypt ? utils.decrypt(password) : password
+      if (user.password !== utils.md5(pwd)) {
         ctx.error = '密码错误'
       } else {
         ctx.result = sign(user.id)
@@ -35,7 +36,7 @@ export default {
     } else {
       const user = await UserService.save({
         username,
-        password: md5(password),
+        password: utils.md5(password),
       })
       ctx.result = {
         id: user.id,

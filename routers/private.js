@@ -1,7 +1,7 @@
 import koaRouter from '@koa/router'
-import controllers from '@controllers/AdminControllers'
-import { logger } from '@middlewares/logger'
-import { verify } from '@middlewares/jwt'
+
+import controllers from '#controllers/AdminControllers/index.js'
+import { verify } from '#middlewares/jwt.js'
 
 const router = new koaRouter()
 const { methods } = router

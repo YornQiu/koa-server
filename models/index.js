@@ -1,8 +1,8 @@
 import { readdirSync } from 'fs'
-import { join } from 'path'
-import { Schema } from 'mongoose'
-import { logger } from '@middlewares/logger'
-import { model } from '@libs/mongoDB'
+import Mongoose from 'mongoose'
+
+const { Schema, model } = Mongoose
+const __dirname = new URL('.', import.meta.url).pathname
 
 const files = readdirSync(__dirname).filter(
   (file) => file.endsWith('.js') && file !== 'index.js'
@@ -12,8 +12,8 @@ const Models = {}
 // 整合models
 console.log(`processing models ...`)
 
-files.forEach((file) => {
-  const modelFile = require(join(__dirname, file))
+files.forEach(async (file) => {
+  const { default: modelFile } = await import(`./${file}`)
   const schema = new Schema(modelFile.schema, modelFile.options || {})
 
   Models[modelFile.name] = model(modelFile.name, schema)

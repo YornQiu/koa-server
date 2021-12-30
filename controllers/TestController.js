@@ -1,5 +1,5 @@
-import FileUploadService from '@services/fileService/FileUploadService'
-import FileDownloadService from '@services/fileService/FileDownloadService'
+import FileUploadService from '#services/fileService/FileUploadService.js'
+import FileDownloadService from '#services/fileService/FileDownloadService.js'
 
 export default {
   'GET /': async (ctx, next) => {

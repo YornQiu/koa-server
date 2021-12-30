@@ -1,7 +1,5 @@
-import { logger } from '@middlewares/logger'
-
-// 这个middleware用于将ctx.result中的内容最终回传给客户端
-// 回传遵循这样的格式：{ code: 0, msg: string, data: any }
+// 将ctx.result按一定的格式处理后终回传给客户端
+// 格式：{ code: 200, msg: string, data: any }
 export const responseHandler = (ctx) => {
   if (ctx.result !== undefined) {
     //处理成功

@@ -1,5 +1,7 @@
-import BaseDAO from '@libs/baseDAO'
-import { article } from '@models'
+import BaseDAO from '#libs/baseDAO.js'
+import models from '#models'
+
+const { article } = models
 
 class ArticleService extends BaseDAO {
   constructor(model) {

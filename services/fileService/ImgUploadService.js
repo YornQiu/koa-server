@@ -1,4 +1,4 @@
-import FileUploadService from './FileUploadService'
+import FileUploadService from './FileUploadService.js'
 
 /**
  * 继承自文件上传类，改变上传路径和允许文件类型

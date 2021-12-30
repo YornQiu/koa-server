@@ -1,11 +1,11 @@
 #!/usr/bin/env node
-require('module-alias/register')
 
-global.config = require('@/config')
-global.logger = require('@middlewares/logger').logger
+// 加载全局对象，因为import顶部提升的特性，无法在此文件中导入config再赋值给global，需提前加载并赋值
+import './loadConfig.js'
+import './loadLogger.js'
 
 import { createServer } from 'http'
-import { callback } from '@/app.js'
+import app from '#root/app.js'
 
 /**
  * Normalize a port into a number, string, or false.
@@ -61,7 +61,7 @@ function onListening() {
 }
 
 const port = normalizePort(process.env.PORT || config.port)
-const server = createServer(callback())
+const server = createServer(app.callback())
 
 server.listen(port)
 server.on('error', onError)
