@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
-const { access } = require('fs/promises')
 const CryptoJS = require('crypto-js')
+const { access } = require('fs/promises')
 
 const SECRET = 'KOA_SERVER_2020'
 

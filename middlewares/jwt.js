@@ -1,6 +1,7 @@
 const { UnauthorizedError } = require('@libs/error')
-const { tokenConfig } = config
 const jwt = require('jsonwebtoken')
+
+const { tokenConfig } = config
 
 const sign = (data) => {
   return {

@@ -12,10 +12,10 @@ const Models = {}
 console.log(`processing models ...`)
 
 for (const file of files) {
-  const modelFile = require(path.join(__dirname, file))
-  const schema = new mongoose.Schema(modelFile.schema, modelFile.options || {})
+  const model = require(path.join(__dirname, file))
+  const schema = new mongoose.Schema(model.schema, model.options || {})
 
-  Models[modelFile.name] = mongo.model(modelFile.name, schema)
+  Models[model.name] = mongo.model(model.name, schema)
 }
 
 logger.info(`Models compiled`)

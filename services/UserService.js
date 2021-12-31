@@ -1,5 +1,5 @@
 const BaseDAO = require('@libs/baseDAO')
-const User = require('@models').user
+const { user } = require('@models')
 
 class UserService extends BaseDAO {
   constructor(model) {
@@ -7,4 +7,4 @@ class UserService extends BaseDAO {
   }
 }
 
-module.exports = new UserService(User)
+module.exports = new UserService(user)

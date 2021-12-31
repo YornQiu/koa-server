@@ -1,5 +1,5 @@
-const CommentService = require('@services').CommentService
 const { InvalidQueryError } = require('@libs/error')
+const { CommentService } = require('@services')
 
 module.exports = {
   'GET /comment/list': async (ctx, next) => {
@@ -13,6 +13,7 @@ module.exports = {
     } else {
       ctx.result = result
     }
+
     return next()
   },
   'DELETE /comment/:id': async (ctx, next) => {
@@ -26,6 +27,7 @@ module.exports = {
     } else {
       ctx.result = result
     }
+
     return next()
   },
   'POST /comment': async (ctx, next) => {
@@ -39,6 +41,7 @@ module.exports = {
     } else {
       ctx.result = ''
     }
+
     return next()
   },
   'PUT /comment/:id': async (ctx, next) => {
@@ -53,6 +56,7 @@ module.exports = {
     } else {
       ctx.result = ''
     }
+
     return next()
   },
 }
