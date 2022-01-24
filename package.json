@@ -20,13 +20,14 @@
     "koa-body": "4.2.0",
     "koa-helmet": "^6.1.0",
     "koa-static": "^5.0.0",
-    "koa-views": "^7.0.1",
+    "koa-views": "^8.0.0",
     "log4js": "^6.4.0",
     "module-alias": "^2.2.2",
-    "mongoose": "^6.0.10"
+    "mongoose": "^6.0.10",
+    "redis": "^4.0.2"
   },
   "devDependencies": {
-    "babel-eslint": "^10.1.0",
+    "@babel/eslint-parser": "^7.16.5",
     "eslint": "^8.3.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
@@ -52,7 +53,7 @@
       "plugin:prettier/recommended"
     ],
     "parserOptions": {
-      "parser": "babel-eslint",
+      "parser": "@babel/eslint-parser",
       "ecmaVersion": 2020
     },
     "globals": {

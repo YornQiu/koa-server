@@ -3,7 +3,6 @@ const controllers = require('@controllers/AdminControllers')
 const { verify } = require('@middlewares/jwt')
 
 const { methods } = router
-router.prefix('/api')
 router.use(verify)
 
 /**

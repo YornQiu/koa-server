@@ -2,7 +2,6 @@ const router = require('@koa/router')()
 const controllers = require('@controllers')
 
 const { methods } = router
-router.prefix('/api')
 
 /**
  * 公开接口，可直接访问
