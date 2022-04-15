@@ -3,9 +3,7 @@ const path = require('path')
 const mongoose = require('mongoose')
 const mongo = require('@libs/mongoDB')
 
-const files = fs
-  .readdirSync(__dirname)
-  .filter((file) => file.endsWith('.js') && file !== 'index.js')
+const files = fs.readdirSync(__dirname).filter((file) => file.endsWith('.js') && file !== 'index.js')
 const Models = {}
 
 // 整合models

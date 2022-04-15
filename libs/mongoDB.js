@@ -12,9 +12,7 @@ mongo.on('connected', () => logger.info(`Connected to mongoDB: ${url}`))
 
 mongo.on('error', () => logger.error(`Failed to connect to mongoDB: ${url}`))
 
-mongo.on('disconnected', () =>
-  logger.info(`Closed connection to mongoDB: ${url}`)
-)
+mongo.on('disconnected', () => logger.info(`Closed connection to mongoDB: ${url}`))
 
 mongo.once('open', () => logger.info('MongoDB is opened'))
 

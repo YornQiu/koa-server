@@ -16,9 +16,7 @@ const sign = (data) => {
     refresh_token: jwt.sign(
       {
         data,
-        exp:
-          Math.floor(Date.now() / 1000) +
-          (tokenConfig.refresh || tokenConfig.expired * 2),
+        exp: Math.floor(Date.now() / 1000) + (tokenConfig.refresh || tokenConfig.expired * 2),
       },
       tokenConfig.secret
     ),

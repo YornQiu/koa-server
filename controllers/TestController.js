@@ -17,10 +17,7 @@ module.exports = {
     return next()
   },
   'GET /download': async (ctx, next) => {
-    const fileDownloadService = new FileDownloadService(
-      config.publicDir + '/img/2020/01/Koala.jpg',
-      '考拉'
-    )
+    const fileDownloadService = new FileDownloadService(config.publicDir + '/img/2020/01/Koala.jpg', '考拉')
     await fileDownloadService.execute(ctx)
 
     return next()

@@ -1,8 +1,6 @@
 const fs = require('fs')
 
-const files = fs
-  .readdirSync(__dirname)
-  .filter((file) => file.endsWith('.js') && file !== 'index.js')
+const files = fs.readdirSync(__dirname).filter((file) => file.endsWith('.js') && file !== 'index.js')
 const controllers = {}
 
 console.log(`processing controllers ...`)

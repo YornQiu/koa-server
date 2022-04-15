@@ -20,15 +20,10 @@ class FileDownloadService {
       const stats = await stat(filePath)
       await access(filePath, constants.R_OK)
       const readStream = createReadStream(filePath)
-      const filename = fileName
-        ? fileName + extname(filePath)
-        : basename(filePath)
+      const filename = fileName ? fileName + extname(filePath) : basename(filePath)
 
       ctx.set('Content-type', 'application/octet-stream')
-      ctx.set(
-        'Content-Disposition',
-        'attachment;filename=' + encodeURIComponent(filename)
-      )
+      ctx.set('Content-Disposition', 'attachment;filename=' + encodeURIComponent(filename))
       ctx.set('Content-Length', stats.size)
       ctx.body = readStream
     } catch (error) {
