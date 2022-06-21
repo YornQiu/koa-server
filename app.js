@@ -41,10 +41,11 @@ app.use(cors(corsHandler))
 
 // View
 app.use(views(config.viewsDir))
+app.use(static(config.viewsDir))
 
 // Routes
-app.use(publicRouter.routes())
 app.use(viewRouter.routes())
+app.use(publicRouter.routes())
 app.use(privateRouter.routes())
 
 // Response

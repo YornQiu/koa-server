@@ -5,7 +5,7 @@ const { tokenConfig } = config
 
 const sign = (data) => {
   return {
-    token_type: 'bearer',
+    token_type: 'Bearer',
     access_token: jwt.sign(
       {
         data,
