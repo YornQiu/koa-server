@@ -43,9 +43,9 @@ app.use(cors(corsHandler))
 app.use(views(config.viewsDir))
 
 // Routes
-app.use(publicRouter.routes(), publicRouter.allowedMethods())
-app.use(viewRouter.routes(), viewRouter.allowedMethods())
-app.use(privateRouter.routes(), privateRouter.allowedMethods())
+app.use(publicRouter.routes())
+app.use(viewRouter.routes())
+app.use(privateRouter.routes())
 
 // Response
 app.use(responseHandler)

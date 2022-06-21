@@ -1,4 +1,4 @@
-import koaRouter from '@koa/router'
+import koaRouter from '#libs/koa-router.js'
 
 const router = new koaRouter()
 

@@ -16,7 +16,6 @@ console.log(`processing controllers ...`)
  */
 files.forEach(async (file) => {
   const { default: controller } = await import(`./${file}`)
-  console.log(controller)
   for (const url in controller) {
     controllers[url] = controller[url]
   }

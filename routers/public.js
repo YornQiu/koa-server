@@ -1,10 +1,8 @@
-import koaRouter from '@koa/router'
-
+import koaRouter from '#libs/koa-router.js'
 import controllers from '#controllers'
 
 const router = new koaRouter()
 const { methods } = router
-router.prefix('/api')
 
 /**
  * 公开接口，可直接访问

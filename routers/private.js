@@ -1,11 +1,9 @@
-import koaRouter from '@koa/router'
-
+import koaRouter from '#libs/koa-router.js'
 import controllers from '#controllers/AdminControllers/index.js'
 import { verify } from '#middlewares/jwt.js'
 
 const router = new koaRouter()
 const { methods } = router
-router.prefix('/api')
 router.use(verify)
 
 /**
