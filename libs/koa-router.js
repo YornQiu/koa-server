@@ -305,7 +305,7 @@ function transformRegexp(path) {
         reg += result
         params.push(str.replace(/\(.+\)/, ''))
       } else {
-        reg += '(.+?)'
+        reg += '([^/]+?)'
         params.push(str)
       }
     } else {
