@@ -13,25 +13,26 @@
     "lint": "eslint . --ext .js,.cjs,.mjs,.ts,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
-    "@koa/cors": "^3.1.0",
+    "@koa/cors": "^3.4.3",
     "crypto-js": "^4.1.1",
     "jsonwebtoken": "^8.5.1",
-    "koa": "^2.13.3",
+    "koa": "^2.14.1",
     "koa-body": "4.2.0",
+    "koa-compose": "^4.1.0",
     "koa-helmet": "^6.1.0",
     "koa-static": "^5.0.0",
     "koa-views": "^8.0.0",
-    "log4js": "^6.4.0",
+    "log4js": "^6.9.1",
     "module-alias": "^2.2.2",
-    "mongoose": "^6.0.10"
+    "mongoose": "^6.10.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.17.9",
-    "@babel/eslint-parser": "^7.17.0",
-    "eslint": "^8.3.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "prettier": "^2.5.0"
+    "@babel/core": "^7.21.3",
+    "@babel/eslint-parser": "^7.21.3",
+    "eslint": "^8.36.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.8.6"
   },
   "_moduleAliases": {
     "@": ".",
