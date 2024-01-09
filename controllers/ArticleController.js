@@ -6,11 +6,7 @@ const { ArticleService } = services
 export default {
   'GET /article/list': async (ctx, next) => {
     const { pageNum, pageSize } = ctx.request.body
-    const result = await ArticleService.findByPage(
-      { state: 1 },
-      pageNum,
-      pageSize
-    )
+    const result = await ArticleService.findByPage({ state: 1 }, pageNum, pageSize)
     if (!result) {
       ctx.error = '获取列表失败'
     } else {

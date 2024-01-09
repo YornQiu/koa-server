@@ -2,9 +2,7 @@ import { readdirSync } from 'fs'
 
 const __dirname = new URL('.', import.meta.url).pathname
 
-const files = readdirSync(__dirname).filter(
-  (file) => file.endsWith('js') && file !== 'index.js'
-)
+const files = readdirSync(__dirname).filter((file) => file.endsWith('js') && file !== 'index.js')
 const services = {}
 
 console.log(`processing services ...`)
